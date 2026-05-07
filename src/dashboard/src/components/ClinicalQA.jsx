@@ -1,5 +1,5 @@
-// File: src/dashboard/src/components/ClinicalQA.jsx
 import { useState } from 'react';
+import { Brain, Send, BookOpen, AlertTriangle, XCircle } from 'lucide-react';
 import { askClinicalQuestion } from '../services/api';
 
 const SAMPLE_QUESTIONS = [
@@ -16,38 +16,15 @@ const ClinicalQA = () => {
   const [loading,  setLoading]  = useState(false);
 
   const handleAsk = async (q) => {
-    const questionToAsk = q || question;
-    if (!questionToAsk.trim()) return;
-
+    const text = (q || question).trim();
+    if (!text) return;
     setLoading(true);
     setAnswer(null);
-    setQuestion(questionToAsk);
-
+    setQuestion(text);
     try {
-      // Direct fetch with exact format API expects
-      const response = await fetch('http://127.0.0.1:8000/api/v1/rag/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          question: questionToAsk,
-          patient_context: {}
-        }),
-      });
-
-      if (!response.ok) {
-        const errText = await response.text();
-        console.error('API Error:', errText);
-        throw new Error(`Status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await askClinicalQuestion(text, {});
       setAnswer(data);
-
     } catch (err) {
-      console.error('RAG Error:', err);
       setAnswer({ error: `Failed: ${err.message}` });
     } finally {
       setLoading(false);
@@ -55,34 +32,44 @@ const ClinicalQA = () => {
   };
 
   return (
-    <div style={{
-      backgroundColor: 'white', borderRadius: '12px',
-      padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-    }}>
-      <h2 style={{ margin: '0 0 16px 0', fontSize: '16px', fontWeight: '600' }}>
-        💬 Clinical Q&A (RAG)
-      </h2>
+    <div className="card" style={{ padding: '24px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
+        <div style={{
+          width: '34px', height: '34px', borderRadius: '10px',
+          background: '#eff6ff', border: '1px solid #bfdbfe',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <Brain size={16} color="var(--blue)" />
+        </div>
+        <div>
+          <h2 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: 'var(--text)' }}>
+            Clinical Q&A
+          </h2>
+          <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-muted)' }}>
+            AI-powered RAG search across clinical guidelines
+          </p>
+        </div>
+      </div>
 
-      {/* Sample Questions */}
-      <div style={{ marginBottom: '12px' }}>
-        <p style={{ fontSize: '12px', color: '#6b7280', margin: '0 0 8px 0' }}>
-          Quick questions:
+      {/* Sample questions */}
+      <div style={{ marginBottom: '14px' }}>
+        <p style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.4px', margin: '0 0 8px' }}>
+          Quick questions
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-          {SAMPLE_QUESTIONS.map((q) => (
+          {SAMPLE_QUESTIONS.map(q => (
             <button
               key={q}
               onClick={() => handleAsk(q)}
               style={{
-                padding:         '4px 10px',
-                backgroundColor: '#eff6ff',
-                color:           '#2563eb',
-                border:          '1px solid #bfdbfe',
-                borderRadius:    '16px',
-                fontSize:        '11px',
-                cursor:          'pointer',
-                fontWeight:      '500',
+                padding: '4px 10px',
+                background: '#eff6ff', color: 'var(--blue)',
+                border: '1px solid #bfdbfe', borderRadius: '16px',
+                fontSize: '11px', cursor: 'pointer', fontWeight: '500',
+                transition: 'all 0.12s ease', fontFamily: 'inherit',
               }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#dbeafe'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#eff6ff'; }}
             >
               {q}
             </button>
@@ -93,80 +80,58 @@ const ClinicalQA = () => {
       {/* Input */}
       <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
         <input
+          className="input"
           type="text"
           value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleAsk()}
-          placeholder="Ask a clinical question..."
-          style={{
-            flex: 1, padding: '10px 12px',
-            border: '1px solid #e5e7eb', borderRadius: '8px',
-            fontSize: '13px',
-          }}
+          onChange={e => setQuestion(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleAsk()}
+          placeholder="Ask a clinical question…"
+          style={{ flex: 1 }}
         />
         <button
           onClick={() => handleAsk()}
           disabled={loading}
-          style={{
-            padding:         '10px 16px',
-            backgroundColor: '#2563eb',
-            color:           'white',
-            border:          'none',
-            borderRadius:    '8px',
-            cursor:          'pointer',
-            fontWeight:      '600',
-            fontSize:        '13px',
-          }}
+          className="btn btn-primary"
+          style={{ padding: '0 16px', display: 'flex', alignItems: 'center', gap: '5px' }}
         >
-          {loading ? '...' : 'Ask'}
+          {loading
+            ? <div style={{ width: '13px', height: '13px', border: '2px solid rgba(255,255,255,0.35)', borderTopColor: 'white', borderRadius: '50%' }} className="animate-spin" />
+            : <Send size={13} />
+          }
+          {loading ? '' : 'Ask'}
         </button>
       </div>
 
       {/* Answer */}
       {answer && !answer.error && (
-        <div style={{
-          backgroundColor: '#f9fafb', borderRadius: '8px',
-          padding: '16px', border: '1px solid #e5e7eb',
-        }}>
-          <p style={{
-            margin: '0 0 8px 0', fontSize: '13px',
-            fontWeight: '600', color: '#111827',
-          }}>
+        <div style={{ background: 'var(--bg)', borderRadius: 'var(--r-md)', padding: '16px', border: '1px solid var(--border)' }}>
+          <p style={{ margin: '0 0 10px', fontSize: '13px', fontWeight: '600', color: 'var(--text)' }}>
             Q: {answer.question}
           </p>
-
           <div style={{
-            backgroundColor: 'white', padding: '12px',
-            borderRadius: '6px', marginBottom: '10px',
-            border: '1px solid #e5e7eb',
+            background: 'var(--white)', padding: '12px',
+            borderRadius: 'var(--r-sm)', marginBottom: '10px',
+            border: '1px solid var(--border)',
+            borderLeft: '3px solid var(--blue)',
           }}>
-            <p style={{
-              margin: 0, fontSize: '13px',
-              color: '#374151', lineHeight: '1.6',
-              whiteSpace: 'pre-line',
-            }}>
+            <p style={{ margin: 0, fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.6', whiteSpace: 'pre-line' }}>
               {answer.answer}
             </p>
           </div>
-
-          {/* Sources */}
           {answer.sources?.length > 0 && (
             <div>
-              <p style={{
-                margin: '0 0 6px 0', fontSize: '11px',
-                color: '#6b7280', fontWeight: '600',
-              }}>
-                📚 Sources:
-              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '6px' }}>
+                <BookOpen size={12} color="var(--text-muted)" />
+                <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                  Sources
+                </p>
+              </div>
               <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                {answer.sources.map((source) => (
+                {answer.sources.map(source => (
                   <span key={source.id} style={{
-                    backgroundColor: '#eff6ff',
-                    color:           '#1d4ed8',
-                    padding:         '2px 8px',
-                    borderRadius:    '12px',
-                    fontSize:        '11px',
-                    border:          '1px solid #bfdbfe',
+                    background: '#eff6ff', color: '#1d4ed8',
+                    padding: '2px 8px', borderRadius: '12px',
+                    fontSize: '11px', border: '1px solid #bfdbfe',
                   }}>
                     {source.title}
                   </span>
@@ -179,10 +144,12 @@ const ClinicalQA = () => {
 
       {answer?.error && (
         <div style={{
-          padding: '12px', backgroundColor: '#fee2e2',
-          borderRadius: '8px', color: '#dc2626', fontSize: '13px',
+          padding: '12px', background: '#fee2e2',
+          borderRadius: 'var(--r-sm)', border: '1px solid #fecaca',
+          display: 'flex', alignItems: 'center', gap: '8px',
         }}>
-          ❌ {answer.error}
+          <XCircle size={14} color="#dc2626" />
+          <span style={{ fontSize: '13px', color: '#dc2626' }}>{answer.error}</span>
         </div>
       )}
     </div>

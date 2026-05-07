@@ -1,0 +1,713 @@
+patient_id,predicted_at,risk_level,risk_label,confidence,news2_score,news2_category,prob_low,prob_medium,prob_high,recommendation,active_alerts
+PT-SIM-001,2026-05-06 22:25:39.566954,0,Low,99.95,4,Low,99.95,0.05,0.01,Continue routine monitoring every 4 hours.,4
+PT-SIM-002,2026-05-06 22:25:41.640477,2,High,99.96,13,High,0.0,0.04,99.96,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:25:43.714418,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:25:45.924838,1,Medium,99.98,8,High,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:25:48.009309,1,Medium,99.99,6,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:27:50.095054,1,Medium,99.88,2,Low,0.11,99.88,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:27:52.184877,2,High,99.95,13,High,0.0,0.04,99.95,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:27:54.278811,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:27:56.369764,1,Medium,99.98,9,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:27:58.484337,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:30:00.579133,1,Medium,99.97,3,Low,0.03,99.97,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:30:02.641431,2,High,99.96,13,High,0.0,0.04,99.96,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:30:04.731501,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:30:06.826911,1,Medium,99.99,8,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:30:08.918942,1,Medium,99.97,7,High,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:32:11.028895,1,Medium,99.97,3,Low,0.02,99.97,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:32:13.119086,2,High,99.97,13,High,0.0,0.03,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:32:15.215596,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:32:17.291986,1,Medium,99.99,7,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:32:19.381493,1,Medium,94.84,10,High,0.52,94.84,4.64,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:34:21.478408,1,Medium,99.98,4,Low,0.01,99.98,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:34:23.546744,2,High,99.96,13,High,0.0,0.03,99.96,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:34:25.657915,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:34:27.731617,1,Medium,99.99,7,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:34:29.843338,1,Medium,85.53,10,High,1.22,85.53,13.25,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:36:31.944287,1,Medium,99.98,4,Low,0.01,99.98,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:36:34.007178,2,High,99.97,13,High,0.01,0.03,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:36:36.086609,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:36:38.134341,1,Medium,99.98,9,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:36:40.191625,1,Medium,86.34,10,High,1.32,86.34,12.34,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:38:42.277467,1,Medium,99.98,4,Low,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:38:44.412092,2,High,72.29,14,High,2.96,24.75,72.29,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:38:46.518217,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:38:48.610065,1,Medium,99.99,8,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:38:50.710392,1,Medium,95.3,10,High,0.54,95.3,4.16,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:40:52.820170,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:40:54.920029,2,High,99.95,14,High,0.01,0.04,99.95,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:40:57.036315,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:40:59.117396,1,Medium,99.99,8,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:41:01.206606,1,Medium,96.72,10,High,0.43,96.72,2.85,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:43:03.339251,1,Medium,99.19,7,High,0.39,99.19,0.42,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:43:05.435763,2,High,99.96,13,High,0.0,0.03,99.96,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:43:07.539811,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:43:09.620108,1,Medium,99.99,7,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:43:11.711142,1,Medium,98.1,9,High,0.29,98.1,1.61,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:45:13.800759,1,Medium,93.39,7,High,1.53,93.39,5.09,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:45:15.882548,2,High,73.64,15,High,2.64,23.72,73.64,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:45:17.971721,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:45:20.026040,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-06 22:45:22.144224,1,Medium,98.77,9,High,0.24,98.77,0.99,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:47:24.226775,1,Medium,91.22,8,High,2.27,91.22,6.51,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:47:26.350809,2,High,71.45,14,High,2.83,25.72,71.45,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:47:28.436266,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:47:30.500624,0,Low,97.84,5,Medium,97.84,1.86,0.3,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-06 22:47:32.616224,1,Medium,79.36,6,Medium,6.67,79.36,13.97,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:49:34.734467,1,Medium,80.23,9,High,4.1,80.23,15.67,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-06 22:49:36.838224,2,High,71.88,15,High,2.66,25.46,71.88,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:49:38.924805,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:49:40.991990,0,Low,98.72,5,Medium,98.72,1.06,0.23,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-06 22:49:43.099955,1,Medium,76.94,6,Medium,7.59,76.94,15.47,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:51:45.182321,2,High,69.4,12,High,13.33,17.27,69.4,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-06 22:51:47.257552,2,High,76.11,14,High,2.39,21.5,76.11,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:51:49.336429,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:51:51.393196,0,Low,98.77,5,Medium,98.77,1.04,0.19,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-06 22:51:53.454150,1,Medium,76.71,7,High,7.57,76.71,15.72,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-06 22:53:55.608254,2,High,89.25,13,High,4.34,6.42,89.25,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-003,2026-05-06 22:54:11.142338,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:54:13.230729,0,Low,99.07,5,Medium,99.07,0.75,0.19,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-06 22:54:15.333879,1,Medium,70.78,7,High,7.07,70.78,22.15,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-06 22:56:02.055988,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-06 22:56:02.144126,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-06 22:56:02.223327,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-06 22:56:03.311931,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-API,2026-05-06 22:56:03.354664,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-API,2026-05-06 22:56:03.400268,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-API,2026-05-06 22:56:03.452887,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-API,2026-05-06 22:56:03.501627,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-API,2026-05-06 22:56:03.551529,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-SIM-001,2026-05-06 22:56:17.449564,2,High,91.74,13,High,3.35,4.91,91.74,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-06 22:56:19.543626,2,High,77.19,14,High,2.26,20.54,77.19,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-06 22:56:21.627662,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-06 22:56:23.694156,0,Low,99.44,5,Medium,99.44,0.41,0.15,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-06 22:56:25.752480,1,Medium,52.04,10,High,6.44,52.04,41.52,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 05:50:01.644246,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 05:50:01.681284,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 05:50:01.730232,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113201979,2026-05-07 05:50:02.005154,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,5
+PT-TEST-1778113202025,2026-05-07 05:50:02.047288,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 05:50:02.093737,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 05:50:02.132145,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-TEST-1778113202153,2026-05-07 05:50:02.172678,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 05:50:02.212487,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 05:50:21.932985,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 05:50:21.978249,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 05:50:22.026254,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 05:50:22.318458,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 05:50:22.355777,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 05:50:22.394616,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-TEST-1778113222415,2026-05-07 05:50:22.435070,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113222454,2026-05-07 05:50:22.474366,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 05:50:22.515675,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-001,2026-05-07 07:15:08.434222,1,Medium,99.28,2,Low,0.7,99.28,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:15:10.516728,2,High,99.98,13,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:15:12.578034,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:15:14.660385,1,Medium,99.98,8,High,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:15:16.718502,1,Medium,99.99,5,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:17:18.816579,1,Medium,96.44,2,Low,3.54,96.44,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:17:20.903797,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:17:23.011519,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:17:25.091787,1,Medium,99.98,7,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:17:27.204101,1,Medium,99.99,7,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:19:29.331309,1,Medium,99.92,2,Low,0.07,99.92,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:19:31.401860,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:19:33.486589,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:19:35.574244,1,Medium,99.98,7,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:19:37.647443,1,Medium,99.97,7,High,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:21:39.720748,1,Medium,99.98,4,Low,0.02,99.98,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:21:41.801975,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:21:43.868309,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:21:45.922546,1,Medium,99.98,8,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:21:48.008680,1,Medium,91.76,9,High,1.01,91.76,7.23,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:23:50.120599,1,Medium,99.98,3,Low,0.02,99.98,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:23:52.205282,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:23:54.302480,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:23:56.396347,1,Medium,99.98,8,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:23:58.490455,1,Medium,88.59,10,High,1.11,88.59,10.29,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:26:00.570012,1,Medium,99.99,4,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:26:02.607622,2,High,99.98,13,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:26:04.684835,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:26:06.744672,1,Medium,99.98,10,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:26:08.810125,1,Medium,88.17,10,High,1.12,88.17,10.7,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:28:10.868570,1,Medium,99.99,6,Medium,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:28:12.917085,2,High,99.98,13,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:28:14.994262,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:28:17.070222,1,Medium,99.98,7,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:28:19.175300,1,Medium,95.09,11,High,0.48,95.09,4.43,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:30:21.245616,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:30:23.343719,2,High,99.98,13,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:30:25.421050,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:30:27.493176,1,Medium,99.98,6,Medium,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:30:29.627326,1,Medium,97.51,10,High,0.39,97.51,2.1,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:32:31.722362,1,Medium,96.02,6,Medium,1.2,96.02,2.78,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:32:33.832036,2,High,99.98,13,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:32:35.937533,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:32:38.034569,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:32:40.136366,1,Medium,97.62,10,High,0.41,97.62,1.97,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:34:42.256356,1,Medium,93.93,7,High,1.56,93.93,4.51,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:34:44.331158,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:34:46.377294,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:34:48.433750,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 07:34:50.485700,1,Medium,66.1,9,High,7.65,66.1,26.24,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:36:52.587281,1,Medium,85.81,9,High,3.24,85.81,10.95,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 07:36:54.705599,2,High,99.98,12,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:36:56.811554,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:36:58.908080,0,Low,97.95,6,Medium,97.95,1.74,0.31,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:37:01.022749,1,Medium,76.65,6,Medium,8.21,76.65,15.14,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:39:03.135628,2,High,64.18,10,High,10.68,25.14,64.18,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:39:05.188070,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:39:07.262194,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:39:09.329650,0,Low,98.33,6,Medium,98.33,1.36,0.31,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:39:11.395173,1,Medium,76.96,6,Medium,8.1,76.96,14.94,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:41:13.497042,2,High,82.76,11,High,5.23,12.01,82.76,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:41:15.610677,2,High,99.98,12,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:41:17.734492,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:41:19.836113,0,Low,98.78,5,Medium,98.78,0.98,0.23,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:41:21.927367,1,Medium,77.42,7,High,7.94,77.42,14.64,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:43:24.054627,2,High,92.85,12,High,2.69,4.46,92.85,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:43:26.130686,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:43:28.216011,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:43:30.290848,0,Low,98.96,5,Medium,98.96,0.83,0.2,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:43:32.379050,1,Medium,76.35,8,High,8.03,76.35,15.61,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:45:34.830059,2,High,93.82,13,High,2.46,3.71,93.82,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:45:37.055867,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:45:39.975453,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:45:42.115275,0,Low,99.4,5,Medium,99.4,0.43,0.16,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:45:44.200064,1,Medium,50.13,10,High,7.29,50.13,42.58,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 07:47:46.418496,2,High,95.55,16,High,1.78,2.66,95.55,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:47:48.527784,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:47:50.614116,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:47:52.701774,0,Low,99.64,4,Low,99.64,0.26,0.11,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:47:54.798507,2,High,52.56,11,High,6.84,40.6,52.56,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-001,2026-05-07 07:49:56.921343,2,High,96.48,17,High,1.59,1.93,96.48,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:49:59.016769,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:50:01.105566,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:50:03.191541,0,Low,99.72,3,Low,99.72,0.21,0.07,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:50:05.284949,2,High,65.34,12,High,7.45,27.21,65.34,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-001,2026-05-07 07:52:07.394789,2,High,96.66,17,High,1.44,1.9,96.66,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:52:09.498665,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:52:11.596325,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:52:13.673722,0,Low,99.8,3,Low,99.8,0.14,0.06,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:52:15.787450,2,High,65.45,13,High,7.46,27.09,65.45,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-001,2026-05-07 07:54:17.915793,2,High,96.48,17,High,1.59,1.93,96.48,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:54:19.996677,2,High,99.97,10,High,0.01,0.02,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:54:22.062493,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:54:24.151015,0,Low,99.82,4,Low,99.82,0.12,0.06,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:54:26.245203,2,High,65.34,12,High,7.45,27.21,65.34,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-002,2026-05-07 07:56:45.147610,2,High,99.97,10,High,0.01,0.02,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:56:47.243626,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:56:49.343198,0,Low,99.55,6,Medium,99.55,0.3,0.15,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:56:51.480492,2,High,61.39,11,High,7.16,31.45,61.39,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-001,2026-05-07 07:58:53.740875,2,High,96.53,17,High,1.66,1.81,96.53,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 07:58:55.860813,2,High,99.98,10,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 07:58:57.971175,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 07:59:00.058514,0,Low,99.55,7,High,99.55,0.3,0.15,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 07:59:02.173277,2,High,52.51,11,High,6.93,40.56,52.51,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-001,2026-05-07 08:01:04.286257,2,High,96.6,17,High,1.59,1.81,96.6,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 08:01:06.410488,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 08:01:08.533959,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 08:01:10.626225,0,Low,99.55,7,High,99.55,0.3,0.15,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 08:01:12.704240,1,Medium,61.65,10,High,7.97,61.65,30.38,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 08:03:14.821033,2,High,96.6,17,High,1.59,1.81,96.6,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 08:03:16.948255,2,High,99.98,10,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 08:03:19.059381,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 08:03:21.155021,0,Low,99.58,7,High,99.58,0.28,0.14,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 08:03:23.261884,1,Medium,76.62,8,High,7.86,76.62,15.52,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 08:05:25.403012,2,High,96.58,17,High,1.61,1.81,96.58,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 08:05:27.535696,2,High,99.98,10,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 08:05:29.653652,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 08:05:31.754768,0,Low,99.58,7,High,99.58,0.28,0.14,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 08:05:33.866293,1,Medium,75.39,8,High,8.11,75.39,16.5,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 08:07:36.023840,2,High,96.27,17,High,1.95,1.78,96.27,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 08:07:38.145644,2,High,99.98,10,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 08:07:40.258935,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 08:07:42.322984,0,Low,99.61,9,High,99.61,0.24,0.15,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 08:07:44.400057,1,Medium,78.87,7,High,7.26,78.87,13.87,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 08:09:46.494407,2,High,96.53,17,High,1.66,1.81,96.53,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 08:09:48.595061,2,High,99.99,12,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 08:09:50.708925,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 08:09:52.788154,0,Low,99.63,9,High,99.63,0.22,0.15,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 08:09:54.860718,1,Medium,78.04,8,High,6.8,78.04,15.16,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-001,2026-05-07 08:11:57.056855,2,High,96.27,17,High,1.95,1.78,96.27,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-002,2026-05-07 08:11:59.162282,2,High,99.98,10,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 08:12:01.245761,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 08:12:03.299337,0,Low,99.63,10,High,99.63,0.2,0.17,Continue routine monitoring every 4 hours.,4
+PT-SIM-005,2026-05-07 08:12:05.391063,1,Medium,72.45,8,High,8.35,72.45,19.21,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 12:07:39.400832,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-001,2026-05-07 12:13:51.730343,1,Medium,99.97,8,High,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-003,2026-05-07 12:14:02.735065,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:14:03.797101,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:14:04.886289,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:14:05.949778,1,Medium,99.98,7,High,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:14:07.028515,1,Medium,99.99,3,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:14:08.102439,1,Medium,99.84,4,Low,0.01,99.84,0.16,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:14:09.176241,2,High,99.98,12,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:14:10.262946,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:14:11.335242,1,Medium,99.96,9,High,0.01,99.96,0.04,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:14:12.408311,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:14:13.467668,1,Medium,91.4,4,Low,2.05,91.4,6.55,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:14:14.547195,1,Medium,99.46,5,Medium,0.01,99.46,0.53,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:14:15.612122,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:14:16.668129,1,Medium,99.99,4,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:14:17.735046,1,Medium,99.97,3,Low,0.02,99.97,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:14:18.810607,1,Medium,99.98,12,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:14:19.873604,1,Medium,71.55,11,High,1.64,71.55,26.81,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 12:14:20.947624,1,Medium,99.97,6,Medium,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:14:42.060534,1,Medium,98.99,8,High,0.25,98.99,0.76,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:14:43.193172,1,Medium,95.21,9,High,0.01,95.21,4.79,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:14:44.344108,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:14:45.457168,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:14:46.586530,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:14:47.702735,1,Medium,99.47,7,High,0.15,99.47,0.38,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:14:48.838432,1,Medium,99.99,3,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:14:49.962290,1,Medium,99.87,4,Low,0.01,99.87,0.12,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:14:51.100397,2,High,99.98,14,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:14:52.214534,2,High,99.98,11,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:14:53.365942,1,Medium,97.2,10,High,0.15,97.2,2.65,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:14:54.490188,1,Medium,99.96,6,Medium,0.01,99.96,0.03,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:14:55.623470,1,Medium,90.85,4,Low,2.09,90.85,7.06,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:14:56.730128,1,Medium,81.24,6,Medium,0.27,81.24,18.48,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:14:57.878311,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:14:59.003642,1,Medium,99.99,4,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:15:00.087513,1,Medium,99.98,5,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:15:01.211545,1,Medium,99.98,11,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:15:02.339434,2,High,99.35,10,High,0.02,0.63,99.35,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:15:03.488997,1,Medium,98.2,6,Medium,0.31,98.2,1.49,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:15:24.637098,1,Medium,97.76,8,High,0.33,97.76,1.91,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:15:25.754634,1,Medium,87.14,10,High,0.01,87.14,12.85,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:15:26.890285,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:15:28.009510,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:15:29.136651,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:15:30.280729,1,Medium,98.36,7,High,0.27,98.36,1.37,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:15:31.417396,1,Medium,99.99,4,Low,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:15:32.547872,1,Medium,99.98,5,Medium,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:15:33.696016,2,High,99.98,13,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:15:34.845276,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:15:35.972411,1,Medium,92.3,10,High,0.28,92.3,7.42,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:15:37.130372,1,Medium,99.94,6,Medium,0.02,99.94,0.04,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:15:38.285552,1,Medium,57.32,3,Low,1.6,57.32,41.08,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:15:39.428444,1,Medium,78.44,3,Low,0.44,78.44,21.12,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:15:40.574414,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:15:41.706051,1,Medium,99.99,4,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:15:42.831288,1,Medium,99.92,4,Low,0.02,99.92,0.05,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:15:43.988734,1,Medium,99.98,10,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:15:45.154920,2,High,99.51,10,High,0.02,0.48,99.51,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:15:46.318634,1,Medium,97.55,8,High,0.37,97.55,2.08,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:16:07.460793,1,Medium,97.71,8,High,0.33,97.71,1.96,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:16:08.592892,1,Medium,99.87,8,High,0.01,99.87,0.12,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:16:09.713700,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:16:10.800572,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:16:11.924479,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:16:13.042354,1,Medium,99.07,8,High,0.22,99.07,0.71,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:16:14.145205,1,Medium,99.99,6,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:16:15.267479,1,Medium,99.82,4,Low,0.01,99.82,0.17,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:16:16.438128,2,High,99.98,13,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:16:17.622944,2,High,99.98,11,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:16:18.762369,1,Medium,94.6,10,High,0.25,94.6,5.15,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:16:19.889047,1,Medium,98.43,6,Medium,0.3,98.43,1.27,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:16:21.044396,1,Medium,57.32,3,Low,1.75,57.32,40.93,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:16:22.176704,1,Medium,79.4,4,Low,0.39,79.4,20.21,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:16:23.302283,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:16:24.450149,1,Medium,99.99,5,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:16:25.564771,1,Medium,99.93,3,Low,0.03,99.93,0.04,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:16:26.690480,1,Medium,99.98,10,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:16:27.823123,2,High,98.96,9,High,0.04,1.0,98.96,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:16:28.947461,1,Medium,97.01,8,High,0.32,97.01,2.67,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:16:50.108418,1,Medium,98.71,8,High,0.27,98.71,1.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:16:51.252512,1,Medium,99.71,9,High,0.01,99.71,0.28,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:16:52.399744,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:16:53.506162,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:16:54.630149,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:16:55.797554,1,Medium,98.74,7,High,0.28,98.74,0.98,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:16:56.919360,1,Medium,99.99,6,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:16:58.053886,1,Medium,99.66,4,Low,0.01,99.66,0.33,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:16:59.166494,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:17:00.300711,2,High,99.98,11,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:17:01.413100,1,Medium,95.99,10,High,0.28,95.99,3.73,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:17:02.538595,1,Medium,94.63,5,Medium,1.0,94.63,4.38,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:17:03.654636,1,Medium,59.07,3,Low,1.75,59.07,39.18,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:17:04.784564,1,Medium,69.46,4,Low,0.4,69.46,30.13,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:17:05.926198,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:17:07.053200,1,Medium,99.99,4,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:17:08.142423,1,Medium,99.9,6,Medium,0.03,99.9,0.07,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:17:09.253998,1,Medium,99.89,9,High,0.01,99.89,0.1,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:17:10.337671,2,High,99.06,9,High,0.08,0.87,99.06,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:17:11.424068,1,Medium,98.22,6,Medium,0.31,98.22,1.47,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:17:32.562049,1,Medium,98.87,7,High,0.3,98.87,0.83,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:17:33.711103,2,High,65.12,9,High,0.08,34.8,65.12,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 12:17:34.846401,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:17:35.955107,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:17:37.073310,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:17:38.198472,1,Medium,98.51,7,High,0.27,98.51,1.22,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:17:39.334193,1,Medium,99.99,7,High,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:17:40.450503,1,Medium,98.84,4,Low,0.03,98.84,1.14,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:17:41.577521,2,High,99.98,13,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:17:42.695048,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:17:43.878928,1,Medium,96.69,10,High,0.27,96.69,3.04,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:17:44.997831,1,Medium,93.18,5,Medium,1.09,93.18,5.73,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:17:46.141049,1,Medium,72.4,3,Low,2.24,72.4,25.36,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:17:47.299456,1,Medium,87.26,3,Low,0.55,87.26,12.19,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:17:48.427709,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:17:49.569205,1,Medium,99.99,4,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:17:50.676528,1,Medium,99.66,6,Medium,0.08,99.66,0.26,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:17:51.803357,1,Medium,98.88,9,High,0.01,98.88,1.11,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:17:52.922511,2,High,99.54,9,High,0.05,0.41,99.54,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:17:54.066651,1,Medium,97.68,7,High,0.31,97.68,2.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:18:15.201558,1,Medium,97.83,7,High,0.44,97.83,1.73,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:18:16.322910,2,High,67.39,9,High,0.1,32.51,67.39,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-SIM-003,2026-05-07 12:18:17.464682,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:18:18.552096,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:18:19.632480,2,High,99.99,12,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:18:20.704899,1,Medium,98.62,6,Medium,0.27,98.62,1.11,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:18:21.761418,1,Medium,99.99,7,High,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:18:22.830443,1,Medium,81.09,4,Low,0.4,81.09,18.51,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:18:23.890244,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:18:24.947833,2,High,99.98,12,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:18:26.027144,1,Medium,98.51,8,High,0.25,98.51,1.24,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:18:27.108394,1,Medium,93.4,4,Low,1.34,93.4,5.26,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:18:28.171748,1,Medium,56.84,3,Low,3.27,56.84,39.89,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:18:29.248185,1,Medium,88.86,4,Low,0.4,88.86,10.74,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:18:30.290872,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:18:31.334997,1,Medium,99.99,5,Medium,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:18:32.394989,1,Medium,99.65,6,Medium,0.08,99.65,0.28,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:18:33.462114,1,Medium,94.71,8,High,0.12,94.71,5.18,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:18:34.531113,2,High,97.18,7,High,0.25,2.57,97.18,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:18:35.578771,1,Medium,98.65,7,High,0.25,98.65,1.1,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:18:56.644209,1,Medium,98.14,8,High,0.3,98.14,1.56,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:18:57.702626,1,Medium,90.93,9,High,0.3,90.93,8.77,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:18:58.769543,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:18:59.815837,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:19:00.867885,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:19:01.950314,1,Medium,99.01,6,Medium,0.25,99.01,0.74,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:19:03.015729,1,Medium,99.98,7,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:19:04.071641,1,Medium,55.3,6,Medium,0.46,55.3,44.24,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:19:05.127341,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:19:06.177507,2,High,99.98,11,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:19:07.228385,1,Medium,97.64,10,High,0.24,97.64,2.12,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:19:08.295245,1,Medium,93.4,4,Low,1.34,93.4,5.26,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:19:09.359864,1,Medium,52.18,4,Low,3.31,52.18,44.51,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:19:10.422108,1,Medium,86.15,4,Low,0.41,86.15,13.44,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:19:11.471581,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:19:12.522920,1,Medium,99.98,4,Low,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:19:13.577395,1,Medium,99.6,6,Medium,0.08,99.6,0.32,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:19:14.640069,1,Medium,99.71,8,High,0.01,99.71,0.29,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222493,2026-05-07 12:19:15.705124,2,High,98.17,7,High,0.19,1.64,98.17,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:19:16.770208,1,Medium,98.46,7,High,0.27,98.46,1.27,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:19:37.825691,1,Medium,97.21,9,High,0.29,97.21,2.5,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:19:38.883510,1,Medium,91.35,9,High,0.32,91.35,8.33,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:19:39.950308,0,Low,99.99,3,Low,99.99,0.0,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:19:40.997312,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:19:42.061264,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:19:43.127456,1,Medium,98.44,8,High,0.27,98.44,1.29,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:19:44.193413,1,Medium,99.98,7,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:19:45.243212,1,Medium,58.21,6,Medium,0.45,58.21,41.34,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 12:19:46.298539,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:19:47.356398,2,High,99.98,11,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:19:48.409434,1,Medium,97.19,11,High,0.24,97.19,2.57,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:19:49.445318,1,Medium,93.62,5,Medium,1.05,93.62,5.33,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:19:50.505348,1,Medium,53.13,4,Low,3.15,53.13,43.73,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-1778113222285,2026-05-07 12:19:51.571076,1,Medium,85.57,4,Low,0.44,85.57,13.99,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:19:52.622978,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:19:53.675056,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:19:54.746958,1,Medium,94.79,6,Medium,0.83,94.79,4.37,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:19:55.802134,2,High,50.07,9,High,0.14,49.79,50.07,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 12:19:56.855006,2,High,98.62,8,High,0.15,1.23,98.62,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:19:57.912487,1,Medium,98.26,8,High,0.29,98.26,1.45,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:20:18.979949,1,Medium,97.58,9,High,0.25,97.58,2.17,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:20:20.033846,1,Medium,76.74,11,High,0.32,76.74,22.94,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:20:21.084814,0,Low,99.99,3,Low,99.99,0.01,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:20:22.132208,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:20:23.175472,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:20:24.228988,1,Medium,98.3,8,High,0.29,98.3,1.41,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:20:25.285480,1,Medium,99.95,7,High,0.01,99.95,0.04,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:20:26.355087,2,High,54.55,7,High,0.47,44.98,54.55,URGENT: Notify physician immediately. Consider ICU transfer.,5
+PT-TEST-1778113202025,2026-05-07 12:20:27.417932,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:20:28.486030,2,High,99.98,11,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:20:29.553884,1,Medium,97.35,11,High,0.28,97.35,2.37,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:20:30.668125,1,Medium,93.44,5,Medium,1.05,93.44,5.51,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:20:31.747745,2,High,66.42,4,Low,3.99,29.59,66.42,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 12:20:32.834592,1,Medium,61.47,5,Medium,0.31,61.47,38.22,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:20:33.916451,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:20:34.970973,1,Medium,99.66,6,Medium,0.15,99.66,0.19,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:20:36.054009,1,Medium,89.34,8,High,1.24,89.34,9.42,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:20:37.130236,2,High,83.63,9,High,0.07,16.31,83.63,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 12:20:38.195478,2,High,99.65,9,High,0.05,0.3,99.65,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:20:39.268343,1,Medium,96.23,10,High,0.46,96.23,3.31,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:21:00.338991,1,Medium,93.05,11,High,0.31,93.05,6.63,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:21:01.400406,1,Medium,70.32,12,High,0.43,70.32,29.26,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:21:02.465725,0,Low,99.99,3,Low,99.99,0.01,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:21:03.509576,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:21:04.554250,2,High,99.98,14,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:21:05.619235,1,Medium,97.65,9,High,0.34,97.65,2.02,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:21:06.685919,1,Medium,97.55,7,High,0.33,97.55,2.13,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:21:07.728558,2,High,86.29,8,High,0.31,13.39,86.29,URGENT: Notify physician immediately. Consider ICU transfer.,5
+PT-TEST-1778113202025,2026-05-07 12:21:08.789970,2,High,99.98,13,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:21:09.840646,2,High,99.98,11,High,0.0,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:21:10.888338,1,Medium,90.15,11,High,0.29,90.15,9.56,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:21:11.936485,1,Medium,93.44,6,Medium,1.05,93.44,5.51,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:21:13.027014,2,High,73.4,5,Medium,2.48,24.12,73.4,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 12:21:14.096650,2,High,87.02,6,Medium,0.39,12.59,87.02,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 12:21:15.151878,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:21:16.200231,1,Medium,99.33,6,Medium,0.23,99.33,0.45,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:21:17.249604,1,Medium,81.52,9,High,1.3,81.52,17.18,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:21:18.322924,2,High,84.76,9,High,0.06,15.18,84.76,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 12:21:19.380779,2,High,99.63,9,High,0.05,0.33,99.63,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:21:20.448051,1,Medium,96.04,10,High,0.45,96.04,3.51,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:21:41.496363,1,Medium,93.52,11,High,0.31,93.52,6.17,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:21:42.547340,1,Medium,70.0,12,High,0.4,70.0,29.6,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:21:43.608051,0,Low,99.99,3,Low,99.99,0.01,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:21:44.666854,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:21:45.715893,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:21:46.763290,1,Medium,97.34,9,High,0.37,97.34,2.29,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:21:47.834623,1,Medium,93.56,7,High,0.57,93.56,5.88,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:21:48.888673,2,High,98.88,9,High,0.09,1.03,98.88,URGENT: Notify physician immediately. Consider ICU transfer.,5
+PT-TEST-1778113202025,2026-05-07 12:21:49.936574,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:21:50.994519,2,High,99.98,11,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:21:52.052535,1,Medium,96.95,11,High,0.32,96.95,2.73,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:21:53.087032,1,Medium,93.44,5,Medium,1.05,93.44,5.51,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:21:54.159269,2,High,75.17,7,High,2.48,22.34,75.17,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 12:21:55.231549,1,Medium,60.33,6,Medium,0.32,60.33,39.34,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:21:56.291811,2,High,99.98,14,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:21:57.355320,1,Medium,99.28,6,Medium,0.21,99.28,0.51,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:21:58.421978,1,Medium,86.16,9,High,1.59,86.16,12.26,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:21:59.479911,2,High,83.97,9,High,0.06,15.97,83.97,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 12:22:00.527038,2,High,99.78,10,High,0.03,0.19,99.78,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:22:01.575906,1,Medium,96.4,10,High,0.44,96.4,3.16,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 12:22:22.646370,1,Medium,48.97,12,High,7.31,48.97,43.72,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 12:22:23.714287,1,Medium,78.49,12,High,0.4,78.49,21.1,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 12:22:24.783790,0,Low,99.99,3,Low,99.99,0.01,0.0,Continue routine monitoring every 4 hours.,0
+PT-SIM-004,2026-05-07 12:22:25.833368,2,High,99.99,15,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-005,2026-05-07 12:22:26.894073,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT-INTEGRATION-001,2026-05-07 12:22:27.958787,1,Medium,97.95,7,High,0.33,97.95,1.72,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 12:22:28.998029,1,Medium,78.04,9,High,1.39,78.04,20.57,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 12:22:30.057705,2,High,99.65,10,High,0.03,0.31,99.65,URGENT: Notify physician immediately. Consider ICU transfer.,5
+PT-TEST-1778113202025,2026-05-07 12:22:31.123532,2,High,99.98,13,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 12:22:32.189584,2,High,99.99,12,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113202112,2026-05-07 12:22:33.252825,1,Medium,88.49,12,High,0.39,88.49,11.13,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 12:22:34.296610,1,Medium,93.42,6,Medium,1.08,93.42,5.49,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113202192,2026-05-07 12:22:35.354655,2,High,76.65,6,Medium,2.47,20.88,76.65,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 12:22:36.400984,1,Medium,65.58,5,Medium,0.33,65.58,34.09,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 12:22:37.436304,2,High,99.98,14,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 12:22:38.501431,1,Medium,98.9,7,High,0.26,98.9,0.84,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 12:22:39.560658,1,Medium,55.93,10,High,1.37,55.93,42.7,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 12:22:40.630886,2,High,97.35,9,High,0.06,2.6,97.35,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 12:22:41.683765,2,High,99.65,9,High,0.05,0.31,99.65,URGENT: Notify physician immediately. Consider ICU transfer.,3
+PT1001,2026-05-07 12:22:42.750737,2,High,47.36,10,High,6.76,45.87,47.36,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT1001,2026-05-07 08:14:38.024614,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-001,2026-05-07 08:26:33.372972,1,Medium,99.99,5,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:26:34.492830,1,Medium,99.99,5,Medium,0.0,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:26:35.563230,1,Medium,99.97,2,Low,0.02,99.97,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:26:36.619573,1,Medium,95.79,3,Low,1.48,95.79,2.72,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:26:37.662226,1,Medium,99.91,8,High,0.01,99.91,0.08,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:26:38.704502,2,High,99.94,12,High,0.0,0.06,99.94,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:26:39.744780,1,Medium,92.33,5,Medium,1.46,92.33,6.2,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 08:26:40.806225,1,Medium,99.97,5,Medium,0.02,99.97,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:26:41.854502,2,High,99.98,16,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:26:42.895419,1,Medium,99.95,3,Low,0.02,99.95,0.04,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:26:43.940944,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:26:44.995667,2,High,78.01,5,Medium,0.52,21.48,78.01,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:26:46.041226,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:26:47.111659,1,Medium,79.18,3,Low,4.89,79.18,15.92,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 08:26:48.155586,2,High,99.98,14,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:26:49.191939,1,Medium,99.98,7,High,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:26:50.226541,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:26:51.272647,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:26:52.314322,1,Medium,99.99,7,High,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:26:53.347535,1,Medium,95.29,7,High,1.08,95.29,3.63,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:27:14.376999,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:27:15.417613,1,Medium,99.99,4,Low,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:27:16.473456,1,Medium,99.99,3,Low,0.01,99.99,0.0,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:27:17.502521,1,Medium,96.42,5,Medium,1.01,96.42,2.57,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:27:18.548439,1,Medium,73.54,10,High,0.29,73.54,26.17,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:27:19.612586,2,High,99.92,12,High,0.01,0.08,99.92,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:27:20.674153,1,Medium,57.11,5,Medium,1.15,57.11,41.74,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 08:27:21.737936,1,Medium,99.98,4,Low,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:27:22.790556,2,High,99.98,15,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:27:23.844652,1,Medium,97.89,4,Low,0.51,97.89,1.6,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:27:24.908258,1,Medium,99.98,7,High,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:27:25.985942,2,High,82.83,6,Medium,0.52,16.66,82.83,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:27:27.073535,2,High,99.98,12,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:27:28.150075,1,Medium,89.14,5,Medium,1.86,89.14,9.0,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113222335,2026-05-07 08:27:29.216052,2,High,99.98,14,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:27:30.274531,1,Medium,99.97,8,High,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:27:31.343273,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:27:32.388417,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:27:33.443363,1,Medium,99.99,7,High,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:27:34.499522,1,Medium,94.62,7,High,1.21,94.62,4.18,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:27:55.545440,1,Medium,99.99,5,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:27:56.593432,1,Medium,99.99,4,Low,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:27:57.633676,1,Medium,99.97,2,Low,0.02,99.97,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:27:58.674611,1,Medium,96.43,6,Medium,0.99,96.43,2.57,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:27:59.720794,1,Medium,67.52,10,High,0.33,67.52,32.16,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:28:00.767925,2,High,54.94,13,High,1.99,43.07,54.94,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:28:01.802821,2,High,50.63,6,Medium,1.4,47.97,50.63,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-1778113201979,2026-05-07 08:28:02.850314,1,Medium,99.96,4,Low,0.03,99.96,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:28:03.890969,2,High,98.76,15,High,0.34,0.9,98.76,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:28:04.920442,1,Medium,97.1,4,Low,0.57,97.1,2.33,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:28:05.964580,1,Medium,99.92,6,Medium,0.01,99.92,0.07,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:28:07.007022,2,High,83.47,6,Medium,1.97,14.56,83.47,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:28:08.059381,2,High,99.98,14,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:28:09.119454,2,High,77.71,5,Medium,0.5,21.79,77.71,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:28:10.162712,2,High,99.98,14,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:28:11.215779,1,Medium,98.26,9,High,0.15,98.26,1.59,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:28:12.277425,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:28:13.324163,2,High,99.99,14,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:28:14.377823,1,Medium,99.98,6,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:28:15.420804,1,Medium,92.6,8,High,1.29,92.6,6.11,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:28:36.490948,1,Medium,99.99,5,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:28:37.546235,1,Medium,99.99,5,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:28:38.611540,1,Medium,99.95,2,Low,0.04,99.95,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:28:39.668497,1,Medium,96.52,6,Medium,0.98,96.52,2.5,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:28:40.739438,1,Medium,66.4,10,High,0.38,66.4,33.23,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:28:41.785294,1,Medium,49.59,14,High,2.08,49.59,48.33,Increase monitoring to every 2 hours. Notify nurse in charge.,7
+PT-TEST-API,2026-05-07 08:28:42.842080,1,Medium,58.04,5,Medium,1.22,58.04,40.74,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 08:28:43.899640,1,Medium,99.99,5,Medium,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:28:44.932528,2,High,99.98,15,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:28:45.976855,1,Medium,97.79,4,Low,0.49,97.79,1.72,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:28:47.024755,1,Medium,99.9,7,High,0.01,99.9,0.08,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:28:48.081021,2,High,82.32,6,Medium,2.06,15.62,82.32,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:28:49.134151,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:28:50.177279,2,High,84.65,5,Medium,0.48,14.87,84.65,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:28:51.220948,2,High,98.6,14,High,0.36,1.04,98.6,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:28:52.263467,1,Medium,97.16,9,High,0.2,97.16,2.64,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:28:53.304601,1,Medium,99.98,6,Medium,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:28:54.351025,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:28:55.396910,1,Medium,99.98,5,Medium,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:28:56.447525,1,Medium,94.54,8,High,1.2,94.54,4.26,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:29:17.498181,1,Medium,99.98,5,Medium,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:29:18.544295,1,Medium,99.99,4,Low,0.01,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:29:19.577748,1,Medium,99.8,2,Low,0.18,99.8,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:29:20.606823,1,Medium,96.43,6,Medium,0.99,96.43,2.57,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:29:21.649864,1,Medium,70.2,10,High,0.37,70.2,29.43,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:29:22.688124,2,High,99.86,13,High,0.01,0.13,99.86,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:29:23.722244,1,Medium,55.6,4,Low,1.84,55.6,42.56,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 08:29:24.754709,1,Medium,99.98,4,Low,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:29:25.788078,2,High,99.98,16,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:29:26.830617,1,Medium,97.24,3,Low,0.58,97.24,2.18,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:29:27.868399,1,Medium,99.94,6,Medium,0.01,99.94,0.05,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:29:28.919229,2,High,85.31,6,Medium,1.65,13.04,85.31,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:29:29.967109,2,High,99.98,14,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:29:31.018277,2,High,61.08,2,Low,1.62,37.31,61.08,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:29:32.062380,2,High,98.32,14,High,0.4,1.28,98.32,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:29:33.113239,1,Medium,95.72,9,High,0.28,95.72,4.0,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:29:34.144307,1,Medium,99.98,6,Medium,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:29:35.177271,2,High,99.98,13,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:29:36.227181,1,Medium,99.97,4,Low,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:29:37.258483,1,Medium,77.6,6,Medium,1.05,77.6,21.35,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:29:58.303189,1,Medium,99.99,7,High,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:29:59.330531,1,Medium,99.98,4,Low,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:30:00.372004,1,Medium,99.83,2,Low,0.15,99.83,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:30:01.402381,1,Medium,96.2,6,Medium,1.03,96.2,2.77,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:30:02.432219,1,Medium,84.81,10,High,0.39,84.81,14.8,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:30:03.465225,2,High,55.11,14,High,2.05,42.84,55.11,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:30:04.499790,1,Medium,69.46,4,Low,2.01,69.46,28.54,Increase monitoring to every 2 hours. Notify nurse in charge.,1
+PT-TEST-1778113201979,2026-05-07 08:30:05.533168,1,Medium,99.98,4,Low,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:30:06.581245,2,High,99.98,15,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:30:07.629665,1,Medium,97.37,3,Low,0.59,97.37,2.04,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:30:08.662406,1,Medium,98.19,5,Medium,0.32,98.19,1.49,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:30:09.693170,2,High,83.42,6,Medium,1.76,14.81,83.42,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:30:10.726040,2,High,99.97,14,High,0.01,0.02,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:30:11.758546,2,High,68.41,2,Low,3.6,27.99,68.41,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:30:12.797036,2,High,98.01,14,High,0.46,1.53,98.01,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:30:13.840505,1,Medium,97.96,7,High,0.29,97.96,1.75,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:30:14.876218,1,Medium,99.97,6,Medium,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:30:15.922279,2,High,99.97,13,High,0.01,0.02,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:30:16.970470,1,Medium,99.97,6,Medium,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:30:18.018637,1,Medium,78.23,4,Low,1.37,78.23,20.4,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:30:39.062643,1,Medium,99.98,6,Medium,0.0,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:30:40.098119,1,Medium,99.99,5,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:30:41.140000,1,Medium,99.8,2,Low,0.18,99.8,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:30:42.177010,1,Medium,96.2,6,Medium,1.03,96.2,2.77,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:30:43.237435,1,Medium,84.89,10,High,0.4,84.89,14.71,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:30:44.281457,2,High,55.99,14,High,1.79,42.22,55.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:30:45.325533,2,High,60.86,4,Low,4.29,34.85,60.86,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-1778113201979,2026-05-07 08:30:46.359828,1,Medium,99.98,4,Low,0.01,99.98,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:30:47.400321,2,High,98.79,15,High,0.34,0.86,98.79,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:30:48.459142,1,Medium,98.48,4,Low,0.42,98.48,1.09,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:30:49.505952,1,Medium,96.92,5,Medium,0.38,96.92,2.7,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:30:50.559576,2,High,80.19,7,High,1.96,17.85,80.19,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:30:51.604709,2,High,99.98,13,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:30:52.650398,2,High,76.44,2,Low,3.64,19.92,76.44,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:30:53.714425,2,High,99.97,13,High,0.01,0.02,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:30:54.771732,1,Medium,96.41,9,High,0.28,96.41,3.31,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:30:55.817572,1,Medium,99.61,6,Medium,0.01,99.61,0.37,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:30:56.869221,2,High,99.98,13,High,0.01,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:30:57.916440,1,Medium,99.97,5,Medium,0.01,99.97,0.03,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:30:58.983721,1,Medium,74.24,4,Low,1.65,74.24,24.11,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-001,2026-05-07 08:31:20.025125,1,Medium,99.98,7,High,0.01,99.98,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:31:21.074717,1,Medium,99.99,6,Medium,0.0,99.99,0.01,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:31:22.107630,1,Medium,99.77,2,Low,0.21,99.77,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:31:23.140478,1,Medium,95.59,7,High,1.18,95.59,3.23,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:31:24.183553,1,Medium,89.91,10,High,0.39,89.91,9.71,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:31:25.221064,2,High,51.36,14,High,1.92,46.73,51.36,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:31:26.245210,2,High,60.66,4,Low,4.63,34.71,60.66,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-1778113201979,2026-05-07 08:31:27.270502,1,Medium,99.97,7,High,0.01,99.97,0.03,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:31:28.305766,2,High,98.83,16,High,0.34,0.83,98.83,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:31:29.350740,1,Medium,95.46,3,Low,2.1,95.46,2.43,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:31:30.386668,1,Medium,97.05,5,Medium,0.4,97.05,2.56,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:31:31.433083,2,High,82.31,5,Medium,1.79,15.9,82.31,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:31:32.468493,2,High,99.98,14,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:31:33.501079,2,High,77.44,2,Low,2.15,20.41,77.44,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:31:34.543551,2,High,99.97,13,High,0.01,0.03,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:31:35.584454,1,Medium,96.37,9,High,0.29,96.37,3.34,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:31:36.624667,1,Medium,99.16,6,Medium,0.02,99.16,0.82,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:31:37.667984,2,High,99.98,14,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:31:38.711297,1,Medium,99.95,3,Low,0.01,99.95,0.04,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:31:39.757395,2,High,55.12,5,Medium,2.64,42.25,55.12,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-SIM-001,2026-05-07 08:32:00.793467,1,Medium,99.4,6,Medium,0.02,99.4,0.58,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-002,2026-05-07 08:32:01.835448,1,Medium,99.97,6,Medium,0.01,99.97,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-SIM-003,2026-05-07 08:32:02.869723,1,Medium,99.63,2,Low,0.35,99.63,0.02,Increase monitoring to every 2 hours. Notify nurse in charge.,0
+PT-SIM-004,2026-05-07 08:32:03.901148,1,Medium,76.97,7,High,1.25,76.97,21.78,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-SIM-005,2026-05-07 08:32:04.949344,1,Medium,80.74,10,High,0.38,80.74,18.88,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-INTEGRATION-001,2026-05-07 08:32:05.986872,2,High,50.4,14,High,1.9,47.71,50.4,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-API,2026-05-07 08:32:07.012920,2,High,65.75,4,Low,7.02,27.23,65.75,URGENT: Notify physician immediately. Consider ICU transfer.,1
+PT-TEST-1778113201979,2026-05-07 08:32:08.047277,1,Medium,99.92,7,High,0.01,99.92,0.07,Increase monitoring to every 2 hours. Notify nurse in charge.,5
+PT-TEST-1778113202025,2026-05-07 08:32:09.086136,2,High,98.83,15,High,0.34,0.83,98.83,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113202070,2026-05-07 08:32:10.127594,1,Medium,97.18,5,Medium,0.47,97.18,2.34,Increase monitoring to every 2 hours. Notify nurse in charge.,2
+PT-TEST-1778113202112,2026-05-07 08:32:11.176386,1,Medium,97.09,7,High,0.41,97.09,2.5,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113202153,2026-05-07 08:32:12.211432,2,High,83.23,7,High,1.76,15.01,83.23,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-TEST-1778113202192,2026-05-07 08:32:13.262001,2,High,99.98,14,High,0.01,0.02,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222285,2026-05-07 08:32:14.305462,2,High,88.79,4,Low,1.35,9.86,88.79,URGENT: Notify physician immediately. Consider ICU transfer.,2
+PT-TEST-1778113222335,2026-05-07 08:32:15.339501,2,High,99.97,13,High,0.01,0.02,99.97,URGENT: Notify physician immediately. Consider ICU transfer.,6
+PT-TEST-1778113222375,2026-05-07 08:32:16.385966,1,Medium,76.9,9,High,1.41,76.9,21.69,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT-TEST-1778113222415,2026-05-07 08:32:17.419322,1,Medium,98.55,7,High,0.02,98.55,1.43,Increase monitoring to every 2 hours. Notify nurse in charge.,4
+PT-TEST-1778113222454,2026-05-07 08:32:18.466269,2,High,99.98,14,High,0.0,0.01,99.98,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778113222493,2026-05-07 08:32:19.502059,1,Medium,99.95,3,Low,0.02,99.95,0.03,Increase monitoring to every 2 hours. Notify nurse in charge.,3
+PT1001,2026-05-07 08:32:20.536223,2,High,58.71,5,Medium,2.73,38.56,58.71,URGENT: Notify physician immediately. Consider ICU transfer.,4
+PT-INTEGRATION-001,2026-05-07 08:37:51.560660,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:37:51.622855,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:37:51.677850,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143079566,2026-05-07 08:37:59.586900,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143079598,2026-05-07 08:37:59.617937,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143079627,2026-05-07 08:37:59.644208,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143079654,2026-05-07 08:37:59.671850,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143079683,2026-05-07 08:37:59.709172,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143079720,2026-05-07 08:37:59.740424,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:42:05.761425,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:42:05.901476,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:42:05.969861,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143333892,2026-05-07 08:42:13.917466,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143333928,2026-05-07 08:42:13.947206,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143333956,2026-05-07 08:42:13.975104,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143333986,2026-05-07 08:42:14.005642,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143334015,2026-05-07 08:42:14.034801,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143334045,2026-05-07 08:42:14.065049,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:46:12.349328,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:46:12.389932,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 08:46:12.434186,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143580199,2026-05-07 08:46:20.219004,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143580227,2026-05-07 08:46:20.244538,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143580252,2026-05-07 08:46:20.269061,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143580277,2026-05-07 08:46:20.292571,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143580302,2026-05-07 08:46:20.317520,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778143580329,2026-05-07 08:46:20.345722,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 09:12:54.479680,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 09:12:54.578561,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-INTEGRATION-001,2026-05-07 09:12:54.683531,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778145176887,2026-05-07 09:12:56.927821,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778145176956,2026-05-07 09:12:56.990978,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778145177016,2026-05-07 09:12:57.056868,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778145177084,2026-05-07 09:12:57.134465,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778145177161,2026-05-07 09:12:57.200012,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7
+PT-TEST-1778145177227,2026-05-07 09:12:57.255937,2,High,99.99,13,High,0.0,0.01,99.99,URGENT: Notify physician immediately. Consider ICU transfer.,7

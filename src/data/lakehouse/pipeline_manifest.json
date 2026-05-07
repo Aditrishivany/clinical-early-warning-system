@@ -1,0 +1,20 @@
+{
+  "pipeline": "clinical_early_warning_raw_staged_curated",
+  "raw_records": 10000,
+  "staged_records": 10000,
+  "curated_records": 10000,
+  "outputs": {
+    "raw": {
+      "csv": "src\\data\\lakehouse\\raw\\vitals\\patient_vitals_raw.csv",
+      "parquet": "src\\data\\lakehouse\\raw\\vitals\\patient_vitals_raw.parquet"
+    },
+    "staged": {
+      "csv": "src\\data\\lakehouse\\staged\\vitals\\patient_vitals_staged.csv",
+      "parquet": "src\\data\\lakehouse\\staged\\vitals\\patient_vitals_staged.parquet"
+    },
+    "curated": {
+      "csv": "src\\data\\lakehouse\\curated\\patient_risk\\patient_risk_curated.csv",
+      "parquet": "src\\data\\lakehouse\\curated\\patient_risk\\patient_risk_curated.parquet"
+    }
+  }
+}

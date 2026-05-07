@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(python -c \"from src.utils.security import create_access_token, verify_password; from config.settings import settings; print\\('security OK, SECRET_KEY set:', bool\\(settings.SECRET_KEY\\)\\)\")",
+      "Bash(python -m pip install fastapi uvicorn)",
+      "Bash(python -c \"from src.utils.security import create_access_token, verify_password; from config.settings import settings; print\\('security OK'\\); print\\('Settings ENV:', settings.ENV\\); print\\('GROQ configured:', bool\\(settings.GROQ_API_KEY\\)\\)\")",
+      "Bash(python -m pip install sqlalchemy)",
+      "Bash(python -c \"from src.database.connection import get_db; from src.database.models import Base, ConversationHistory; print\\('DB layer OK'\\)\")",
+      "Bash(python -c \"from src.api.main import app; print\\('API imports OK'\\)\")"
+    ]
+  }
+}

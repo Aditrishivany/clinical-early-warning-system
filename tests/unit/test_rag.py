@@ -35,6 +35,10 @@ class TestRAGEngine:
         for r in results:
             assert "score" in r
             assert r["score"] > 0
+            assert r["retrieval"] == "embedding_vector_search"
+
+    def test_vector_store_metadata(self, rag_engine):
+        assert rag_engine.vector_store_backend is not None
 
     def test_answer_returns_response(self, rag_engine):
         result = rag_engine.answer("What is the sepsis protocol?")
@@ -45,6 +49,7 @@ class TestRAGEngine:
         result = rag_engine.answer("What is NEWS2 score?")
         assert "sources" in result
         assert len(result["sources"]) > 0
+        assert result["retrieval"] == "embeddings_vector_store"
 
     def test_answer_with_patient_context(self, rag_engine):
         context = {"age": 72, "gender": "M", "spo2": 89}

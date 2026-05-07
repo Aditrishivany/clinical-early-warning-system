@@ -1,5 +1,6 @@
 // File: src/dashboard/src/pages/LiveMonitor.jsx
 import { useState, useEffect } from 'react';
+import { Users, AlertTriangle, Activity, Bell, RefreshCw } from 'lucide-react';
 import { getHighRiskPatients, getDashboardStats } from '../services/api';
 import PatientMonitorCard from '../components/PatientMonitorCard';
 import PatientDetail      from './PatientDetail';
@@ -52,10 +53,10 @@ const LiveMonitor = ({ onSelectPatient }) => {
   }
 
   const filterButtons = [
-    { id: 'all',    label: 'All Patients',   color: '#6b7280' },
-    { id: 'high',   label: '🔴 High Risk',   color: '#dc2626' },
-    { id: 'medium', label: '🟡 Medium Risk', color: '#d97706' },
-    { id: 'low',    label: '🟢 Low Risk',    color: '#16a34a' },
+    { id: 'all',    label: 'All Patients', color: '#6b7280' },
+    { id: 'high',   label: 'High Risk',    color: '#dc2626' },
+    { id: 'medium', label: 'Medium Risk',  color: '#d97706' },
+    { id: 'low',    label: 'Low Risk',     color: '#16a34a' },
   ];
 
   const filteredPatients = patients.filter(p => {
@@ -72,29 +73,32 @@ const LiveMonitor = ({ onSelectPatient }) => {
       {/* Stats */}
       <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
         {[
-          { label: 'Total Monitored', value: stats?.total_patients ?? 0, color: '#2563eb', icon: '👥' },
-          { label: 'High Risk',       value: stats?.high_risk      ?? 0, color: '#dc2626', icon: '🔴' },
-          { label: 'Medium Risk',     value: stats?.medium_risk    ?? 0, color: '#d97706', icon: '🟡' },
-          { label: 'Low Risk',        value: stats?.low_risk       ?? 0, color: '#16a34a', icon: '🟢' },
-          { label: 'Active Alerts',   value: stats?.active_alerts  ?? 0, color: '#7c3aed', icon: '🚨' },
+          { label: 'Total Monitored', value: stats?.total_patients ?? 0, color: '#2563eb', Icon: Users         },
+          { label: 'High Risk',       value: stats?.high_risk      ?? 0, color: '#dc2626', Icon: AlertTriangle  },
+          { label: 'Medium Risk',     value: stats?.medium_risk    ?? 0, color: '#d97706', Icon: Activity       },
+          { label: 'Low Risk',        value: stats?.low_risk       ?? 0, color: '#16a34a', Icon: Activity       },
+          { label: 'Active Alerts',   value: stats?.active_alerts  ?? 0, color: '#7c3aed', Icon: Bell           },
         ].map(stat => (
           <div key={stat.label} className="card" style={{
             padding: '16px 20px', flex: 1, minWidth: '130px',
             borderLeft: `4px solid ${stat.color}`,
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                <p style={{ margin: 0, fontSize: '11px', color: '#6b7280' }}>
+                <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
                   {stat.label}
                 </p>
-                <p style={{
-                  margin: '4px 0 0 0', fontSize: '28px',
-                  fontWeight: '700', color: stat.color,
-                }}>
+                <p style={{ margin: '6px 0 0', fontSize: '28px', fontWeight: '800', color: stat.color }}>
                   {stat.value}
                 </p>
               </div>
-              <span style={{ fontSize: '28px' }}>{stat.icon}</span>
+              <div style={{
+                width: '36px', height: '36px', borderRadius: '10px',
+                background: `${stat.color}12`, border: `1px solid ${stat.color}20`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <stat.Icon size={16} color={stat.color} />
+              </div>
             </div>
           </div>
         ))}
@@ -127,21 +131,21 @@ const LiveMonitor = ({ onSelectPatient }) => {
           ))}
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#6b7280' }}>
-          <div style={{
-            width: '8px', height: '8px', borderRadius: '50%',
-            backgroundColor: '#22c55e', animation: 'pulse 2s infinite',
-          }}/>
-          Updated: {lastUpdate || 'Loading...'}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--text-muted)' }}>
+          <div className="status-dot live" />
+          Updated: {lastUpdate || 'Loading…'}
           <button
             onClick={fetchData}
             style={{
-              padding: '4px 10px', backgroundColor: '#eff6ff',
-              color: '#2563eb', border: '1px solid #bfdbfe',
-              borderRadius: '6px', cursor: 'pointer', fontSize: '11px',
+              padding: '4px 10px',
+              background: '#eff6ff', color: 'var(--blue)',
+              border: '1px solid #bfdbfe', borderRadius: '6px',
+              cursor: 'pointer', fontSize: '11px', fontWeight: '600',
+              display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'inherit',
             }}
           >
-            🔄 Refresh
+            <RefreshCw size={11} />
+            Refresh
           </button>
         </div>
       </div>
@@ -149,22 +153,30 @@ const LiveMonitor = ({ onSelectPatient }) => {
       {/* Patient Cards Grid */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: '60px' }}>
-          <p style={{ fontSize: '32px' }}>⏳</p>
-          <p style={{ color: '#6b7280' }}>Loading patients...</p>
+          <div style={{
+            width: '36px', height: '36px', margin: '0 auto 16px',
+            border: '3px solid var(--border)', borderTopColor: 'var(--blue)',
+            borderRadius: '50%',
+          }} className="animate-spin" />
+          <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: 0 }}>Loading patients…</p>
         </div>
       ) : filteredPatients.length === 0 ? (
         <div className="card" style={{ padding: '60px', textAlign: 'center' }}>
-          <p style={{ fontSize: '48px', margin: '0 0 12px 0' }}>🏥</p>
-          <p style={{ fontSize: '16px', fontWeight: '600', color: '#374151' }}>
-            No patients found
-          </p>
-          <p style={{ color: '#6b7280', fontSize: '13px' }}>
+          <div style={{
+            width: '52px', height: '52px', borderRadius: '50%',
+            background: '#eff6ff', border: '1px solid #bfdbfe',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px',
+          }}>
+            <Activity size={22} color="var(--blue)" />
+          </div>
+          <p style={{ fontSize: '15px', fontWeight: '600', color: 'var(--text-secondary)', margin: '0 0 6px' }}>No patients found</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: '0 0 12px' }}>
             Run the simulator to add patients:
           </p>
           <code style={{
-            backgroundColor: '#f3f4f6', padding: '6px 12px',
-            borderRadius: '6px', fontSize: '12px', marginTop: '8px',
-            display: 'inline-block',
+            background: 'var(--bg)', border: '1px solid var(--border)',
+            padding: '6px 12px', borderRadius: 'var(--r-sm)',
+            fontSize: '12px', display: 'inline-block', color: 'var(--text)',
           }}>
             python scripts/simulate_realtime.py
           </code>

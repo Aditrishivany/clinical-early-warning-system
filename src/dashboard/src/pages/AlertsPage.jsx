@@ -1,5 +1,5 @@
-// File: src/dashboard/src/pages/AlertsPage.jsx
 import { useState, useEffect } from 'react';
+import { Bell, AlertTriangle, AlertCircle, Activity } from 'lucide-react';
 import { getActiveAlerts } from '../services/api';
 
 const AlertsPage = () => {
@@ -9,8 +9,8 @@ const AlertsPage = () => {
 
   useEffect(() => {
     fetchAlerts();
-    const interval = setInterval(fetchAlerts, 15000);
-    return () => clearInterval(interval);
+    const id = setInterval(fetchAlerts, 15_000);
+    return () => clearInterval(id);
   }, []);
 
   const fetchAlerts = async () => {
@@ -18,104 +18,117 @@ const AlertsPage = () => {
       const data = await getActiveAlerts();
       setAlerts(data.alerts || []);
     } catch (err) {
-      console.error('Failed:', err);
+      console.error('fetchAlerts:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  const filtered = alerts.filter(a => {
-    if (filter === 'all')      return true;
-    if (filter === 'critical') return a.severity === 'CRITICAL';
-    if (filter === 'warning')  return a.severity === 'WARNING';
-    return true;
-  });
-
   const criticalCount = alerts.filter(a => a.severity === 'CRITICAL').length;
   const warningCount  = alerts.filter(a => a.severity === 'WARNING').length;
+
+  const filtered = filter === 'critical'
+    ? alerts.filter(a => a.severity === 'CRITICAL')
+    : filter === 'warning'
+    ? alerts.filter(a => a.severity === 'WARNING')
+    : alerts;
+
+  const STATS = [
+    { label: 'Total Alerts', value: alerts.length,  color: '#6B7280', Icon: Bell          },
+    { label: 'Critical',     value: criticalCount,  color: '#DC2626', Icon: AlertTriangle  },
+    { label: 'Warnings',     value: warningCount,   color: '#D97706', Icon: AlertCircle    },
+  ];
+
+  const FILTERS = [
+    { id: 'all',      label: 'All Alerts' },
+    { id: 'critical', label: 'Critical'   },
+    { id: 'warning',  label: 'Warnings'   },
+  ];
 
   return (
     <div className="animate-fade">
 
-      {/* Stats */}
+      {/* ── Stats ── */}
       <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
-        {[
-          { label: 'Total Alerts', value: alerts.length,  color: '#6b7280', icon: '🔔' },
-          { label: 'Critical',     value: criticalCount,  color: '#dc2626', icon: '🚨' },
-          { label: 'Warnings',     value: warningCount,   color: '#d97706', icon: '⚠️' },
-        ].map(stat => (
-          <div key={stat.label} className="card" style={{
-            padding: '16px 24px', flex: 1,
-            borderLeft: `4px solid ${stat.color}`,
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {STATS.map(s => (
+          <div key={s.label} className="card" style={{ padding: '18px 22px', flex: 1, borderLeft: `4px solid ${s.color}` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                <p style={{ margin: 0, fontSize: '12px', color: '#6b7280' }}>
-                  {stat.label}
+                <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                  {s.label}
                 </p>
-                <p style={{
-                  margin: '4px 0 0 0', fontSize: '32px',
-                  fontWeight: '700', color: stat.color,
-                }}>
-                  {stat.value}
+                <p style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: '800', color: s.color }}>
+                  {s.value}
                 </p>
               </div>
-              <span style={{ fontSize: '32px' }}>{stat.icon}</span>
+              <div style={{
+                width: '38px', height: '38px', borderRadius: '10px',
+                background: `${s.color}12`, border: `1px solid ${s.color}20`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <s.Icon size={17} color={s.color} />
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Filter */}
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-        {[
-          { id: 'all',      label: 'All Alerts'   },
-          { id: 'critical', label: '🚨 Critical'  },
-          { id: 'warning',  label: '⚠️ Warnings'  },
-        ].map(btn => (
+      {/* ── Filter Bar ── */}
+      <div style={{ display: 'flex', gap: '6px', marginBottom: '16px' }}>
+        {FILTERS.map(btn => (
           <button
             key={btn.id}
             onClick={() => setFilter(btn.id)}
             style={{
-              padding:         '6px 16px',
-              backgroundColor: filter === btn.id ? '#1e3a5f' : 'white',
-              color:           filter === btn.id ? 'white'   : '#374151',
-              border:          '1px solid #e5e7eb',
-              borderRadius:    '8px',
-              cursor:          'pointer',
-              fontSize:        '13px',
-              fontWeight:      '500',
+              padding: '7px 18px',
+              background:   filter === btn.id ? 'var(--blue)'   : 'var(--white)',
+              color:        filter === btn.id ? 'white'         : 'var(--text-secondary)',
+              border:       `1px solid ${filter === btn.id ? 'var(--blue)' : 'var(--border)'}`,
+              borderRadius: 'var(--r-md)',
+              cursor:       'pointer', fontSize: '13px', fontWeight: '600',
+              transition:   'all 0.15s ease', fontFamily: 'inherit',
             }}
           >
             {btn.label}
           </button>
         ))}
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div className="status-dot live" />
+          <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: '500' }}>
+            Auto-refreshes every 15s
+          </span>
+        </div>
       </div>
 
-      {/* Table */}
+      {/* ── Table ── */}
       <div className="card">
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center' }}>
-            <p>⏳ Loading alerts...</p>
+          <div style={{ padding: '48px', textAlign: 'center' }}>
+            <div style={{
+              width: '32px', height: '32px', margin: '0 auto 14px',
+              border: '3px solid var(--border)', borderTopColor: 'var(--blue)',
+              borderRadius: '50%',
+            }} className="animate-spin" />
+            <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: 0 }}>Loading alerts…</p>
           </div>
         ) : filtered.length === 0 ? (
-          <div style={{ padding: '60px', textAlign: 'center' }}>
-            <p style={{ fontSize: '48px' }}>✅</p>
-            <p style={{ color: '#6b7280' }}>No active alerts</p>
+          <div style={{ padding: '64px', textAlign: 'center' }}>
+            <div style={{
+              width: '52px', height: '52px', borderRadius: '50%',
+              background: '#ecfdf5', border: '1px solid #a7f3d0',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px',
+            }}>
+              <Activity size={22} color="#059669" />
+            </div>
+            <p style={{ fontSize: '15px', fontWeight: '600', color: 'var(--text-secondary)', margin: '0 0 4px' }}>No active alerts</p>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>All patients are stable</p>
           </div>
         ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="table" style={{ width: '100%' }}>
             <thead>
-              <tr style={{ backgroundColor: '#f9fafb' }}>
-                {['Severity','Patient','Type','Alert','Action Required','Time'].map(h => (
-                  <th key={h} style={{
-                    padding:      '12px 16px',
-                    textAlign:    'left',
-                    fontSize:     '12px',
-                    fontWeight:   '600',
-                    color:        '#6b7280',
-                    borderBottom: '1px solid #e5e7eb',
-                  }}>
+              <tr>
+                {['Severity', 'Patient', 'Type', 'Alert', 'Action Required', 'Time'].map(h => (
+                  <th key={h} style={{ padding: '12px 16px', textAlign: 'left', fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
                     {h}
                   </th>
                 ))}
@@ -126,34 +139,38 @@ const AlertsPage = () => {
                 const isCrit = alert.severity === 'CRITICAL';
                 return (
                   <tr key={i} style={{
-                    backgroundColor: isCrit ? '#fff5f5' : i % 2 === 0 ? 'white' : '#fafafa',
-                    borderBottom:    '1px solid #f3f4f6',
+                    background: isCrit ? '#fff5f5' : i % 2 === 0 ? 'var(--white)' : 'var(--bg)',
+                    borderBottom: '1px solid var(--border)',
+                    transition: 'background 0.15s',
                   }}>
                     <td style={{ padding: '12px 16px' }}>
                       <span style={{
-                        backgroundColor: isCrit ? '#fee2e2' : '#fef3c7',
-                        color:           isCrit ? '#dc2626' : '#d97706',
-                        padding:         '3px 10px',
-                        borderRadius:    '12px',
-                        fontSize:        '11px',
-                        fontWeight:      '700',
+                        display: 'inline-flex', alignItems: 'center', gap: '5px',
+                        background: isCrit ? '#fee2e2' : '#fef3c7',
+                        color:      isCrit ? '#dc2626' : '#d97706',
+                        padding: '3px 10px', borderRadius: '12px',
+                        fontSize: '11px', fontWeight: '700',
                       }}>
-                        {isCrit ? '🚨' : '⚠️'} {alert.severity}
+                        {isCrit
+                          ? <AlertTriangle size={11} />
+                          : <AlertCircle  size={11} />
+                        }
+                        {alert.severity}
                       </span>
                     </td>
-                    <td style={{ padding: '12px 16px', fontSize: '13px', fontWeight: '600' }}>
+                    <td style={{ padding: '12px 16px', fontSize: '13px', fontWeight: '600', color: 'var(--text)' }}>
                       {alert.patient_id}
                     </td>
-                    <td style={{ padding: '12px 16px', fontSize: '13px', color: '#374151' }}>
+                    <td style={{ padding: '12px 16px', fontSize: '12px', color: 'var(--text-secondary)' }}>
                       {alert.type}
                     </td>
-                    <td style={{ padding: '12px 16px', fontSize: '12px', color: '#374151', maxWidth: '250px' }}>
+                    <td style={{ padding: '12px 16px', fontSize: '12px', color: 'var(--text-secondary)', maxWidth: '240px' }}>
                       {alert.message}
                     </td>
                     <td style={{ padding: '12px 16px', fontSize: '12px', color: isCrit ? '#dc2626' : '#d97706', fontWeight: '500' }}>
-                      → {alert.action}
+                      {alert.action}
                     </td>
-                    <td style={{ padding: '12px 16px', fontSize: '11px', color: '#9ca3af' }}>
+                    <td style={{ padding: '12px 16px', fontSize: '11px', color: 'var(--text-muted)' }}>
                       {new Date(alert.created_at).toLocaleTimeString()}
                     </td>
                   </tr>

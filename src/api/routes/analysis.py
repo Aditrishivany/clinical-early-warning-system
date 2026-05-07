@@ -1,264 +1,159 @@
 """
-File: src/api/routes/analysis.py
-Purpose: Full analysis endpoint — ML + Agents + Database
+Full analysis endpoint — ML + multi-agent pipeline + database persistence.
 """
-from src.database.models import Patient, VitalReading, Prediction, Alert
+
+import logging
 import joblib
-import json
-import sys
-import pandas as pd
 from pathlib import Path
+from datetime import datetime
+
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
-from datetime import datetime
 
-sys.path.append(".")
-
-from src.agents.coordinator  import AgentCoordinator
+from src.agents.coordinator import AgentCoordinator
 from src.database.connection import get_db
 from src.database.repository import (
-    get_or_create_patient,
-    save_vital_reading,
-    save_prediction,
-    save_agent_report,
-    save_alerts,
-    get_dashboard_stats,
-    get_recent_predictions,
-    get_high_risk_patients,
-    get_patient_reports,
-    get_active_alerts,
-    get_patient_vitals_history,
+    get_or_create_patient, save_vital_reading, save_prediction,
+    save_agent_report, save_alerts, get_dashboard_stats,
+    get_active_alerts, get_high_risk_patients,
+    get_patient_reports, get_patient_vitals_history, write_audit,
 )
+from src.utils.features import build_features, get_news2_score, get_news2_category, get_clinical_concerns
+from src.utils.security import get_current_user_optional
+from config.settings import settings
 
-router      = APIRouter()
+logger     = logging.getLogger(__name__)
+router     = APIRouter()
 coordinator = AgentCoordinator()
 
-# ─────────────────────────────────────────
-# LOAD MODEL
-# ─────────────────────────────────────────
-MODELS_DIR = Path("src/ml/models")
+# ── Load model ────────────────────────────────────────────────────────────────
+_MODELS_DIR = Path(settings.MODELS_DIR)
 
 try:
-    model  = joblib.load(MODELS_DIR / "early_warning_model.joblib")
-    scaler = joblib.load(MODELS_DIR / "feature_scaler.joblib")
-    with open("src/data/features/feature_list.json") as f:
-        FEATURE_NAMES = json.load(f)["features"]
-    print("  ✅ Analysis route: ML Model loaded")
+    model  = joblib.load(_MODELS_DIR / "early_warning_model.joblib")
+    scaler = joblib.load(_MODELS_DIR / "feature_scaler.joblib")
+    logger.info("Analysis route: ML model loaded")
 except Exception as e:
-    print(f"  ❌ Model load error: {e}")
+    logger.error("Model load error: %s", e)
     model  = None
     scaler = None
 
+_RISK_LABELS = {0: "Low", 1: "Medium", 2: "High"}
+_RISK_COLORS = {0: "green", 1: "orange", 2: "red"}
+_RECOMMENDATIONS = {
+    0: "Continue routine monitoring every 4 hours.",
+    1: "Increase monitoring to every 2 hours. Notify nurse in charge.",
+    2: "URGENT: Notify physician immediately. Consider ICU transfer.",
+}
 
-# ─────────────────────────────────────────
-# INPUT SCHEMA
-# ─────────────────────────────────────────
+
+# ── Schema ────────────────────────────────────────────────────────────────────
+
 class PatientInput(BaseModel):
     patient_id:       str   = Field(..., example="PT1001")
-    age:              float = Field(..., example=72)
+    age:              float = Field(..., ge=0,  le=120)
     gender:           str   = Field(..., example="M")
     ward:             str   = Field(..., example="ICU")
-    heart_rate:       float = Field(..., example=128)
-    systolic_bp:      float = Field(..., example=85)
-    diastolic_bp:     float = Field(..., example=55)
-    temperature:      float = Field(..., example=39.2)
-    respiratory_rate: float = Field(..., example=28)
-    spo2:             float = Field(..., example=89)
-    consciousness:    int   = Field(..., example=1)
-    urine_output:     float = Field(..., example=12)
-    glucose:          float = Field(..., example=11.5)
-    pain_score:       int   = Field(..., example=7)
+    heart_rate:       float = Field(..., ge=20, le=250)
+    systolic_bp:      float = Field(..., ge=50, le=250)
+    diastolic_bp:     float = Field(..., ge=20, le=150)
+    temperature:      float = Field(..., ge=30, le=45)
+    respiratory_rate: float = Field(..., ge=4,  le=60)
+    spo2:             float = Field(..., ge=50, le=100)
+    consciousness:    int   = Field(..., ge=0,  le=3)
+    urine_output:     float = Field(..., ge=0,  le=200)
+    glucose:          float = Field(..., ge=1,  le=30)
+    pain_score:       int   = Field(..., ge=0,  le=10)
 
 
-# ─────────────────────────────────────────
-# FEATURE BUILDER
-# ─────────────────────────────────────────
-def build_features(v: PatientInput) -> pd.DataFrame:
-    gender_encoded = 1 if v.gender == "M" else 0
-    ward_map       = {"ICU": 3, "HDU": 2, "Emergency": 2, "General": 1}
-    ward_encoded   = ward_map.get(v.ward, 1)
+# ── Main analysis endpoint ────────────────────────────────────────────────────
 
-    if v.age <= 40:   age_group = 0
-    elif v.age <= 60: age_group = 1
-    elif v.age <= 75: age_group = 2
-    else:             age_group = 3
-
-    def rr_score(rr):
-        if rr <= 8:  return 3
-        if rr <= 11: return 1
-        if rr <= 20: return 0
-        if rr <= 24: return 2
-        return 3
-
-    def spo2_score(s):
-        if s <= 83: return 3
-        if s <= 85: return 2
-        if s <= 87: return 1
-        if s <= 92: return 0
-        if s <= 94: return 1
-        if s <= 96: return 2
-        return 3
-
-    def sbp_score(sbp):
-        if sbp <= 90:  return 3
-        if sbp <= 100: return 2
-        if sbp <= 110: return 1
-        if sbp <= 219: return 0
-        return 3
-
-    def hr_score(hr):
-        if hr <= 40:  return 3
-        if hr <= 50:  return 1
-        if hr <= 90:  return 0
-        if hr <= 110: return 1
-        if hr <= 130: return 2
-        return 3
-
-    def temp_score(t):
-        if t <= 35.0: return 3
-        if t <= 36.0: return 1
-        if t <= 38.0: return 0
-        if t <= 39.0: return 1
-        return 2
-
-    n_rr   = rr_score(v.respiratory_rate)
-    n_spo2 = spo2_score(v.spo2)
-    n_sbp  = sbp_score(v.systolic_bp)
-    n_hr   = hr_score(v.heart_rate)
-    n_temp = temp_score(v.temperature)
-    n_avpu = 3 if v.consciousness > 0 else 0
-    news2  = n_rr + n_spo2 + n_sbp + n_hr + n_temp + n_avpu
-
-    pulse_pressure = v.systolic_bp - v.diastolic_bp
-    map_val        = round(v.diastolic_bp + (pulse_pressure / 3), 1)
-    shock_index    = round(v.heart_rate / v.systolic_bp, 3)
-    temp_deviation = round(abs(v.temperature - 37.0), 2)
-    spo2_deficit   = round(100 - v.spo2, 1)
-    resp_distress  = 1 if (v.respiratory_rate > 25 or v.spo2 < 92) else 0
-    hypotension    = 1 if v.systolic_bp < 90 else 0
-    tachycardia    = 1 if v.heart_rate > 100 else 0
-    fever          = 1 if v.temperature > 38.3 else 0
-    shock_ind      = 1 if (shock_index > 1.0 and hypotension == 1) else 0
-
-    features = {
-        "heart_rate": v.heart_rate, "systolic_bp": v.systolic_bp,
-        "diastolic_bp": v.diastolic_bp, "temperature": v.temperature,
-        "respiratory_rate": v.respiratory_rate, "spo2": v.spo2,
-        "consciousness": v.consciousness, "urine_output": v.urine_output,
-        "glucose": v.glucose, "pain_score": v.pain_score,
-        "age": v.age, "gender_encoded": gender_encoded,
-        "ward_encoded": ward_encoded, "age_group": age_group,
-        "news2_rr": n_rr, "news2_spo2": n_spo2, "news2_sbp": n_sbp,
-        "news2_hr": n_hr, "news2_temp": n_temp, "news2_avpu": n_avpu,
-        "news2_total": news2, "pulse_pressure": pulse_pressure,
-        "map": map_val, "shock_index": shock_index,
-        "temp_deviation": temp_deviation, "spo2_deficit": spo2_deficit,
-        "resp_distress": resp_distress, "hypotension": hypotension,
-        "tachycardia": tachycardia, "fever": fever,
-        "shock_indicator": shock_ind,
-    }
-
-    return pd.DataFrame([features])[FEATURE_NAMES]
-
-
-# ─────────────────────────────────────────
-# MAIN ANALYSIS ENDPOINT
-# ─────────────────────────────────────────
 @router.post("/analyze")
 def full_analysis(
     patient: PatientInput,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user_optional),
 ):
-    """
-    Complete clinical analysis:
-    ML Prediction + All Agents + Save to Database
-    """
+    """Full clinical analysis: ML + agents + database persistence."""
     if model is None:
-        raise HTTPException(status_code=503, detail="Model not loaded")
+        raise HTTPException(status_code=503, detail="ML model not available")
 
     try:
-        # ── Step 1: ML Prediction ──
-        X        = build_features(patient)
+        patient_dict = patient.model_dump()
+
+        # Step 1: ML prediction
+        X        = build_features(patient_dict)
         X_scaled = scaler.transform(X)
 
         risk_level    = int(model.predict(X_scaled)[0])
         probabilities = model.predict_proba(X_scaled)[0]
         confidence    = round(float(probabilities[risk_level]) * 100, 2)
-        news2_total   = int(X["news2_total"].iloc[0])
-
-        risk_labels = {0: "Low", 1: "Medium", 2: "High"}
-        risk_colors = {0: "green", 1: "orange", 2: "red"}
-        recommendations = {
-            0: "Continue routine monitoring every 4 hours.",
-            1: "Increase monitoring to every 2 hours. Notify nurse in charge.",
-            2: "URGENT: Notify physician immediately. Consider ICU transfer.",
-        }
-
-        concerns = []
-        if patient.heart_rate > 100:
-            concerns.append(f"Tachycardia (HR: {patient.heart_rate})")
-        if patient.systolic_bp < 90:
-            concerns.append(f"Hypotension (SBP: {patient.systolic_bp})")
-        if patient.spo2 < 92:
-            concerns.append(f"Low SpO2 ({patient.spo2}%)")
-        if patient.respiratory_rate > 25:
-            concerns.append(f"High RR ({patient.respiratory_rate})")
-        if patient.temperature > 38.3:
-            concerns.append(f"Fever ({patient.temperature}°C)")
-        if patient.consciousness > 0:
-            concerns.append("Altered consciousness")
+        news2_total   = get_news2_score(patient_dict)
 
         prediction = {
             "risk_level":     risk_level,
-            "risk_label":     risk_labels[risk_level],
-            "risk_color":     risk_colors[risk_level],
+            "risk_label":     _RISK_LABELS[risk_level],
+            "risk_color":     _RISK_COLORS[risk_level],
             "confidence":     confidence,
             "news2_score":    news2_total,
-            "news2_category": "Low" if news2_total <= 4 else "Medium" if news2_total <= 6 else "High",
-            "top_concerns":   concerns,
-            "recommendation": recommendations[risk_level],
+            "news2_category": get_news2_category(news2_total),
+            "top_concerns":   get_clinical_concerns(patient_dict),
+            "recommendation": _RECOMMENDATIONS[risk_level],
             "probabilities": {
                 "low":    round(float(probabilities[0]) * 100, 2),
                 "medium": round(float(probabilities[1]) * 100, 2),
                 "high":   round(float(probabilities[2]) * 100, 2),
-            }
+            },
         }
 
-        # ── Step 2: Run All Agents ──
-        patient_dict = patient.dict()
-        report       = coordinator.run(patient_dict, prediction)
+        # Step 2: Run agents
+        report = coordinator.run(patient_dict, prediction)
 
-        # ── Step 3: Save to Database ──
+        # Step 3: Persist to database
         get_or_create_patient(db, patient_dict)
         save_vital_reading(db, patient_dict, news2_total)
         save_prediction(db, patient.patient_id, prediction)
         save_agent_report(db, report)
-        save_alerts(db, patient.patient_id, report["warnings"])
+        save_alerts(db, patient.patient_id, report.get("warnings", {}))
+
+        # Audit
+        performer = current_user.get("sub", "api") if current_user else "api"
+        write_audit(
+            db, "patient_analyzed", performer,
+            patient_id=patient.patient_id,
+            details={"risk_label": prediction["risk_label"], "news2": news2_total},
+        )
 
         return {
-            "status":    "success",
+            "status":     "success",
             "saved_to_db": True,
-            "timestamp": datetime.now().isoformat(),
-            "report":    report,
+            "timestamp":   datetime.utcnow().isoformat(),
+            "report":      report,
         }
 
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except HTTPException:
+        raise
+    except Exception:
+        logger.exception("Analysis error for patient %s", patient.patient_id)
+        raise HTTPException(status_code=500, detail="Analysis failed — check server logs")
 
 
-# ─────────────────────────────────────────
-# DATABASE READ ENDPOINTS
-# ─────────────────────────────────────────
+# ── Dashboard read endpoints ──────────────────────────────────────────────────
+
 @router.get("/dashboard/stats")
-def dashboard_stats(db: Session = Depends(get_db)):
-    """Get summary stats for dashboard."""
+def dashboard_stats(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_user_optional),
+):
     return get_dashboard_stats(db)
 
 
 @router.get("/dashboard/alerts")
-def active_alerts(db: Session = Depends(get_db)):
-    """Get all active unresolved alerts."""
+def active_alerts(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_user_optional),
+):
     alerts = get_active_alerts(db)
     return {
         "total": len(alerts),
@@ -273,64 +168,31 @@ def active_alerts(db: Session = Depends(get_db)):
                 "created_at": str(a.created_at),
             }
             for a in alerts
-        ]
+        ],
     }
 
 
 @router.get("/dashboard/high-risk")
-def high_risk_patients(db: Session = Depends(get_db)):
-    """Get all high risk patients."""
-    try:
-        all_preds = db.query(Prediction).order_by(
-            Prediction.predicted_at.desc()
-        ).all()
-
-        # Get latest prediction per patient
-        seen   = set()
-        latest = []
-        for pred in all_preds:
-            if pred.patient_id not in seen:
-                seen.add(pred.patient_id)
-                latest.append(pred)
-
-        # Sort by risk level
-        latest.sort(key=lambda x: x.risk_level, reverse=True)
-
-        patients = [
-            {
-                "patient_id":   p.patient_id,
-                "risk_level":   p.risk_level,
-                "risk_label":   p.risk_label or "Low",
-                "confidence":   p.confidence or 0,
-                "news2_score":  p.news2_score or 0,
-                "predicted_at": str(p.predicted_at),
-            }
-            for p in latest
-        ]
-
-        return {
-            "total":    len(patients),
-            "patients": patients
-        }
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return {"total": 0, "patients": []}
+def high_risk_patients(
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_user_optional),
+):
+    patients = get_high_risk_patients(db)
+    return {"total": len(patients), "patients": patients}
 
 
 @router.get("/patient/{patient_id}/history")
 def patient_history(
     patient_id: str,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    _: dict = Depends(get_current_user_optional),
 ):
-    """Get full history for a patient."""
     vitals  = get_patient_vitals_history(db, patient_id)
     reports = get_patient_reports(db, patient_id)
-
     return {
-        "patient_id":    patient_id,
-        "total_readings": len(vitals),
-        "total_reports":  len(reports),
+        "patient_id":      patient_id,
+        "total_readings":  len(vitals),
+        "total_reports":   len(reports),
         "recent_vitals": [
             {
                 "recorded_at":     str(v.recorded_at),
@@ -344,13 +206,13 @@ def patient_history(
         ],
         "recent_reports": [
             {
-                "report_id":   r.report_id,
-                "alert_level": r.alert_level,
+                "report_id":    r.report_id,
+                "alert_level":  r.alert_level,
                 "generated_at": str(r.generated_at),
-                "summary":     r.executive_summary,
+                "summary":      r.executive_summary,
             }
             for r in reports
-        ]
+        ],
     }
 
 
@@ -360,5 +222,5 @@ def analysis_health():
         "status":      "healthy",
         "agents":      ["Triage", "Warning", "Insight"],
         "model_ready": model is not None,
-        "database":    "connected"
+        "database":    "connected",
     }

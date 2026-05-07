@@ -30,28 +30,12 @@ const PatientForm = ({ onAnalysisComplete }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(form),
-      });
-
-      if (!response.ok) {
-        const errText = await response.text();
-        console.error('Analyze Error:', errText);
-        throw new Error(`Status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await analyzePatient(form);
       setResult(data.report);
       if (onAnalysisComplete) onAnalysisComplete(data.report);
-
     } catch (err) {
-      console.error('Submit Error:', err);
-      setError(`Failed to analyze: ${err.message}. Is the API running?`);
+      console.error('PatientForm analyze:', err);
+      setError(`Failed to analyze: ${err.message}`);
     } finally {
       setLoading(false);
     }

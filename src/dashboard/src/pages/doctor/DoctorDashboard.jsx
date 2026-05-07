@@ -1,19 +1,21 @@
-// File: src/dashboard/src/pages/doctor/DoctorDashboard.jsx
 import { useState, useEffect } from 'react';
+import { Users, AlertTriangle, Bell, BarChart2, Plus, Activity, Stethoscope } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { getHighRiskPatients, getDashboardStats, getActiveAlerts } from '../../services/api';
 import RiskBadge from '../../components/RiskBadge';
 
+const RISK_COLOR = { High: '#dc2626', Medium: '#d97706', Low: '#059669' };
+
 const DoctorDashboard = ({ onNavigate, onSelectPatient }) => {
-  const { user }           = useAuth();
-  const [patients, setPatients] = useState([]);
-  const [stats,    setStats]    = useState(null);
-  const [alerts,   setAlerts]   = useState([]);
+  const { user }                  = useAuth();
+  const [patients, setPatients]   = useState([]);
+  const [stats,    setStats]      = useState(null);
+  const [alerts,   setAlerts]     = useState([]);
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 30000);
-    return () => clearInterval(interval);
+    const id = setInterval(fetchData, 30_000);
+    return () => clearInterval(id);
   }, []);
 
   const fetchData = async () => {
@@ -25,200 +27,233 @@ const DoctorDashboard = ({ onNavigate, onSelectPatient }) => {
       ]);
       setPatients(p.patients || []);
       setStats(s);
-      setAlerts(a.alerts || []);
-    } catch (err) {
-      console.error(err);
-    }
+      setAlerts(a.alerts   || []);
+    } catch (err) { console.error(err); }
   };
 
-  const myAlerts = alerts.filter(a =>
-    user?.patients?.includes(a.patient_id)
-  );
+  const myAlerts = alerts.filter(a => user?.patients?.includes(a.patient_id));
+
+  const QUICK_STATS = [
+    { label: 'My Patients',    value: user?.patients?.length ?? 0, color: '#2563EB', Icon: Users         },
+    { label: 'Critical Now',   value: stats?.high_risk      ?? 0,  color: '#DC2626', Icon: AlertTriangle  },
+    { label: 'My Alerts',      value: myAlerts.length,              color: '#7C3AED', Icon: Bell           },
+    { label: 'Total Readings', value: stats?.total_readings ?? 0,   color: '#059669', Icon: BarChart2      },
+  ];
 
   return (
     <div className="animate-fade">
 
-      {/* Welcome */}
+      {/* ── Welcome Banner ── */}
       <div style={{
-        background:   'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
-        borderRadius: '16px',
-        padding:      '20px 24px',
-        marginBottom: '20px',
-        color:        'white',
-        display:      'flex',
-        justifyContent:'space-between',
-        alignItems:   'center',
+        background:     'linear-gradient(135deg, #1e3a5f 0%, #2563EB 100%)',
+        borderRadius:   'var(--r-xl)',
+        padding:        '22px 28px',
+        marginBottom:   '20px',
+        display:        'flex',
+        justifyContent: 'space-between',
+        alignItems:     'center',
+        position:       'relative',
+        overflow:       'hidden',
       }}>
+        <div style={{
+          position: 'absolute', right: '-40px', top: '-40px',
+          width: '160px', height: '160px', borderRadius: '50%',
+          border: '1px solid rgba(255,255,255,0.07)', pointerEvents: 'none',
+        }} />
         <div>
-          <h2 style={{ margin: 0, fontSize: '20px', fontWeight: '700' }}>
-            Welcome, {user?.name} 👨‍⚕️
-          </h2>
-          <p style={{ margin: '4px 0 0 0', opacity: 0.8, fontSize: '13px' }}>
-            {user?.specialty} | {user?.hospital}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+            <div style={{
+              width: '32px', height: '32px', borderRadius: '8px',
+              background: 'rgba(255,255,255,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <Stethoscope size={16} color="white" />
+            </div>
+            <h2 style={{ margin: 0, fontSize: '20px', fontWeight: '700', color: 'white' }}>
+              Welcome, {user?.name}
+            </h2>
+          </div>
+          <p style={{ margin: 0, opacity: 0.7, fontSize: '13px', color: 'white' }}>
+            {user?.specialty} · {user?.hospital}
           </p>
         </div>
         <div style={{
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          borderRadius:    '12px',
-          padding:         '12px 20px',
-          textAlign:       'center',
+          background: 'rgba(255,255,255,0.12)',
+          borderRadius: '14px',
+          padding: '14px 22px',
+          textAlign: 'center',
+          backdropFilter: 'blur(4px)',
         }}>
-          <p style={{ margin: 0, fontSize: '28px', fontWeight: '800' }}>
+          <p style={{ margin: 0, fontSize: '30px', fontWeight: '800', color: 'white', lineHeight: 1 }}>
             {patients.length}
           </p>
-          <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>
-            Patients Need Attention
+          <p style={{ margin: '4px 0 0', fontSize: '11px', color: 'rgba(255,255,255,0.75)' }}>
+            Need Attention
           </p>
         </div>
       </div>
 
-      {/* Quick Stats */}
+      {/* ── Quick Stats ── */}
       <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
-        {[
-          { label: 'My Patients',   value: user?.patients?.length ?? 0, color: '#2563eb', icon: '👥' },
-          { label: 'Critical Now',  value: stats?.high_risk ?? 0,        color: '#dc2626', icon: '🔴' },
-          { label: 'My Alerts',     value: myAlerts.length,              color: '#7c3aed', icon: '🚨' },
-          { label: 'Total Readings',value: stats?.total_readings ?? 0,   color: '#059669', icon: '📊' },
-        ].map(s => (
-          <div key={s.label} className="card" style={{
-            padding: '16px', flex: 1,
-            borderLeft: `4px solid ${s.color}`,
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {QUICK_STATS.map(s => (
+          <div key={s.label} className="card" style={{ padding: '16px', flex: 1, borderLeft: `4px solid ${s.color}` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                <p style={{ margin: 0, fontSize: '11px', color: '#6b7280' }}>{s.label}</p>
-                <p style={{ margin: '4px 0 0 0', fontSize: '28px', fontWeight: '800', color: s.color }}>
+                <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                  {s.label}
+                </p>
+                <p style={{ margin: '6px 0 0', fontSize: '28px', fontWeight: '800', color: s.color }}>
                   {s.value}
                 </p>
               </div>
-              <span style={{ fontSize: '28px' }}>{s.icon}</span>
+              <div style={{
+                width: '36px', height: '36px', borderRadius: '10px',
+                background: `${s.color}12`, border: `1px solid ${s.color}20`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <s.Icon size={16} color={s.color} />
+              </div>
             </div>
           </div>
         ))}
       </div>
 
+      {/* ── Main Grid ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
 
         {/* Patient List */}
-        <div className="card" style={{ padding: '20px' }}>
-          <div style={{
-            display: 'flex', justifyContent: 'space-between',
-            alignItems: 'center', marginBottom: '16px',
-          }}>
-            <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '600' }}>
-              👥 My Patients
-            </h3>
+        <div className="card" style={{ padding: '22px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <div>
+              <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '700', color: 'var(--text)' }}>My Patients</h3>
+              <p style={{ margin: '2px 0 0', fontSize: '12px', color: 'var(--text-muted)' }}>High-risk patients assigned to you</p>
+            </div>
             <button
               onClick={() => onNavigate('analyze')}
-              style={{
-                backgroundColor: '#2563eb', color: 'white',
-                border: 'none', borderRadius: '8px',
-                padding: '6px 14px', cursor: 'pointer',
-                fontSize: '12px', fontWeight: '600',
-              }}
+              className="btn btn-primary"
+              style={{ padding: '7px 14px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '5px' }}
             >
-              + New Analysis
+              <Plus size={13} />
+              New Analysis
             </button>
           </div>
 
           {patients.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '30px', color: '#9ca3af' }}>
-              <p style={{ fontSize: '32px' }}>👥</p>
-              <p>No patients yet. Run the simulator!</p>
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--text-muted)' }}>
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                background: '#eff6ff', border: '1px solid #bfdbfe',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '0 auto 12px',
+              }}>
+                <Users size={20} color="var(--blue)" />
+              </div>
+              <p style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', margin: '0 0 4px' }}>No patients yet</p>
+              <p style={{ fontSize: '12px', margin: 0 }}>Run the simulator to populate data</p>
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {patients.map((p, i) => (
-                <div
-                  key={i}
-                  onClick={() => onSelectPatient(p.patient_id)}
-                  style={{
-                    display:         'flex',
-                    alignItems:      'center',
-                    padding:         '12px',
-                    borderRadius:    '10px',
-                    border:          '1px solid #e5e7eb',
-                    cursor:          'pointer',
-                    transition:      'all 0.15s',
-                    gap:             '12px',
-                    backgroundColor: 'white',
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f9fafb'}
-                  onMouseLeave={e => e.currentTarget.style.backgroundColor = 'white'}
-                >
-                  <div style={{
-                    width:           '42px',
-                    height:          '42px',
-                    borderRadius:    '50%',
-                    backgroundColor: p.risk_label === 'High' ? '#fee2e2' : '#fef3c7',
-                    display:         'flex',
-                    alignItems:      'center',
-                    justifyContent:  'center',
-                    fontSize:        '18px',
-                    flexShrink:      0,
-                  }}>
-                    {p.risk_label === 'High' ? '🔴' : '🟡'}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '380px', overflowY: 'auto' }}>
+              {patients.map((p, i) => {
+                const riskColor = RISK_COLOR[p.risk_label] || '#6B7280';
+                return (
+                  <div
+                    key={i}
+                    onClick={() => onSelectPatient(p.patient_id)}
+                    style={{
+                      display: 'flex', alignItems: 'center',
+                      padding: '12px 14px',
+                      borderRadius: 'var(--r-md)',
+                      border: '1px solid var(--border)',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      gap: '12px',
+                      background: 'var(--white)',
+                      animation: `fadeUp 0.3s ease ${i * 0.05}s both`,
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg)'; e.currentTarget.style.transform = 'translateX(3px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'var(--white)'; e.currentTarget.style.transform = 'translateX(0)'; }}
+                  >
+                    <div style={{
+                      width: '42px', height: '42px', borderRadius: '12px',
+                      background: `${riskColor}15`, border: `1px solid ${riskColor}30`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: riskColor, fontWeight: '800', fontSize: '13px', flexShrink: 0,
+                    }}>
+                      {p.patient_id?.slice(-3)}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ margin: 0, fontSize: '13px', fontWeight: '600', color: 'var(--text)' }}>{p.patient_id}</p>
+                      <p style={{ margin: '2px 0 0', fontSize: '11px', color: 'var(--text-muted)' }}>
+                        NEWS2: {p.news2_score} · {new Date(p.predicted_at).toLocaleTimeString()}
+                      </p>
+                    </div>
+                    <RiskBadge label={p.risk_label} />
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <p style={{ margin: 0, fontSize: '13px', fontWeight: '600' }}>
-                      {p.patient_id}
-                    </p>
-                    <p style={{ margin: '2px 0 0 0', fontSize: '11px', color: '#6b7280' }}>
-                      NEWS2: {p.news2_score} | {new Date(p.predicted_at).toLocaleTimeString()}
-                    </p>
-                  </div>
-                  <RiskBadge label={p.risk_label} />
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
 
         {/* Clinical Alerts */}
-        <div className="card" style={{ padding: '20px' }}>
-          <h3 style={{ margin: '0 0 16px 0', fontSize: '15px', fontWeight: '600' }}>
-            🚨 Clinical Alerts
-          </h3>
-          <div style={{
-            display: 'flex', flexDirection: 'column',
-            gap: '8px', maxHeight: '400px', overflowY: 'auto',
-          }}>
-            {alerts.slice(0, 8).map((alert, i) => (
-              <div key={i} style={{
-                padding:         '10px 12px',
-                backgroundColor: alert.severity === 'CRITICAL' ? '#fff5f5' : '#fffbeb',
-                borderRadius:    '8px',
-                border:          `1px solid ${alert.severity === 'CRITICAL' ? '#fecaca' : '#fde68a'}`,
+        <div className="card" style={{ padding: '22px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <div>
+              <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '700', color: 'var(--text)' }}>Clinical Alerts</h3>
+              <p style={{ margin: '2px 0 0', fontSize: '12px', color: 'var(--text-muted)' }}>Unresolved notifications</p>
+            </div>
+            {alerts.length > 0 && (
+              <div style={{
+                background: '#fef2f2', border: '1px solid #fecaca',
+                borderRadius: '20px', padding: '3px 10px',
+                fontSize: '12px', fontWeight: '700', color: '#dc2626',
               }}>
-                <div style={{
-                  display: 'flex', justifyContent: 'space-between', marginBottom: '4px',
-                }}>
-                  <span style={{
-                    fontSize:   '12px', fontWeight: '700',
-                    color:      alert.severity === 'CRITICAL' ? '#dc2626' : '#d97706',
-                  }}>
-                    {alert.severity === 'CRITICAL' ? '🚨' : '⚠️'} {alert.patient_id}
-                  </span>
-                  <span style={{ fontSize: '10px', color: '#9ca3af' }}>
-                    {new Date(alert.created_at).toLocaleTimeString()}
-                  </span>
-                </div>
-                <p style={{ margin: 0, fontSize: '11px', color: '#374151' }}>
-                  {alert.message}
-                </p>
-                <p style={{
-                  margin: '4px 0 0 0', fontSize: '11px',
-                  color: alert.severity === 'CRITICAL' ? '#dc2626' : '#d97706',
-                  fontWeight: '500',
-                }}>
-                  → {alert.action}
-                </p>
+                {alerts.length}
               </div>
-            ))}
+            )}
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '380px', overflowY: 'auto' }}>
+            {alerts.slice(0, 8).map((alert, i) => {
+              const isCrit = alert.severity === 'CRITICAL';
+              return (
+                <div key={i} style={{
+                  padding: '11px 13px',
+                  background: isCrit ? '#fff5f5' : '#fffbeb',
+                  borderRadius: 'var(--r-sm)',
+                  border: `1px solid ${isCrit ? '#fecaca' : '#fde68a'}`,
+                  borderLeft: `3px solid ${isCrit ? '#dc2626' : '#d97706'}`,
+                  animation: `fadeUp 0.3s ease ${i * 0.05}s both`,
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: '700', color: isCrit ? '#dc2626' : '#d97706' }}>
+                      {isCrit ? 'CRITICAL' : 'WARNING'} · {alert.patient_id}
+                    </span>
+                    <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
+                      {new Date(alert.created_at).toLocaleTimeString()}
+                    </span>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                    {alert.message}
+                  </p>
+                  {alert.action && (
+                    <p style={{ margin: '4px 0 0', fontSize: '11px', color: isCrit ? '#dc2626' : '#d97706', fontWeight: '600' }}>
+                      Action: {alert.action}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
             {alerts.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '30px', color: '#9ca3af' }}>
-                <p style={{ fontSize: '24px' }}>✅</p>
-                <p>No active alerts</p>
+              <div style={{ textAlign: 'center', padding: '32px', color: 'var(--text-muted)' }}>
+                <div style={{
+                  width: '44px', height: '44px', borderRadius: '50%',
+                  background: '#ecfdf5', border: '1px solid #a7f3d0',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 10px',
+                }}>
+                  <Activity size={18} color="#059669" />
+                </div>
+                <p style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-secondary)', margin: 0 }}>No active alerts</p>
               </div>
             )}
           </div>

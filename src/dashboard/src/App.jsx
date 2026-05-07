@@ -1,208 +1,233 @@
-// File: src/dashboard/src/App.jsx
-import { useState, useEffect } from 'react';
-import './styles.css';
+// App.jsx — root with error boundary, auth restoration, role-based routing
 
+import { useState, useEffect, Component } from 'react';
+import './styles.css';
+import ChatBot       from './components/ChatBot';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { getActiveAlerts }       from './services/api';
 
-// Pages
 import LoginPage      from './pages/LoginPage';
 import Layout         from './components/Layout';
-
-// Admin
 import AdminDashboard from './pages/admin/AdminDashboard';
-
-// Doctor
+import AnalyticsDashboard from './pages/admin/AnalyticsDashboard';
+import DataPipelinePage from './pages/admin/DataPipelinePage';
 import DoctorDashboard from './pages/doctor/DoctorDashboard';
-
-// Nurse
 import NurseDashboard  from './pages/nurse/NurseDashboard';
 import NurseVitals     from './pages/nurse/NurseVitals';
+import ShiftHandover   from './pages/nurse/ShiftHandover';
+import PatientHome     from './pages/patient/PatientHome';
+import PatientAsk      from './pages/patient/PatientAsk';
+import LiveMonitor     from './pages/LiveMonitor';
+import AlertsPage      from './pages/AlertsPage';
+import PatientDetail   from './pages/PatientDetail';
+import ClinicalQA      from './components/ClinicalQA';
+import PatientForm     from './components/PatientForm';
+import AgentReport     from './components/AgentReport';
 
-// Patient
-import PatientHome from './pages/patient/PatientHome';
-import PatientAsk  from './pages/patient/PatientAsk';
 
-// Shared
-import LiveMonitor   from './pages/LiveMonitor';
-import AlertsPage    from './pages/AlertsPage';
-import PatientDetail from './pages/PatientDetail';
-import ClinicalQA    from './components/ClinicalQA';
-import PatientForm   from './components/PatientForm';
-import AgentReport   from './components/AgentReport';
+// ── Error Boundary ────────────────────────────────────────────────────────────
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
 
-// ─────────────────────────────────────────
-// MAIN APP (with auth)
-// ─────────────────────────────────────────
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, info) {
+    console.error('ClinicalAI error:', error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{
+          minHeight:      '100vh',
+          display:        'flex',
+          flexDirection:  'column',
+          alignItems:     'center',
+          justifyContent: 'center',
+          background:     'var(--bg)',
+          padding:        '40px',
+          textAlign:      'center',
+        }}>
+          <div style={{
+            background:    'var(--white)',
+            border:        '1px solid var(--border)',
+            borderRadius:  'var(--r-xl)',
+            padding:       '48px',
+            maxWidth:      '480px',
+            boxShadow:     'var(--shadow-lg)',
+          }}>
+            <div style={{
+              width: '56px', height: '56px', borderRadius: '50%',
+              background: 'var(--danger-bg)', border: '1px solid var(--danger-border)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 20px', fontSize: '24px',
+            }}>
+              ⚠
+            </div>
+            <h2 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px', color: 'var(--text)' }}>
+              Something went wrong
+            </h2>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '24px' }}>
+              An unexpected error occurred. Please refresh the page.
+            </p>
+            <button
+              className="btn btn-primary"
+              onClick={() => { this.setState({ hasError: false }); window.location.reload(); }}
+            >
+              Refresh Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+
+// ── Loading screen ────────────────────────────────────────────────────────────
+const LoadingScreen = () => (
+  <div style={{
+    minHeight: '100vh', display: 'flex', alignItems: 'center',
+    justifyContent: 'center', background: 'var(--bg)',
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{
+        width: '44px', height: '44px',
+        border: '3px solid var(--border)',
+        borderTopColor: 'var(--blue)',
+        borderRadius: '50%',
+        margin: '0 auto 16px',
+      }} className="animate-spin" />
+      <p style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '500' }}>
+        Loading ClinicalAI…
+      </p>
+    </div>
+  </div>
+);
+
+
+// ── Main app content ──────────────────────────────────────────────────────────
 function AppContent() {
-  const { user }             = useAuth();
-  const [page,       setPage]       = useState('dashboard');
-  const [alertCount, setAlertCount] = useState(0);
-  const [selectedPt, setSelectedPt] = useState(null);
-  const [lastReport, setLastReport] = useState(null);
+  const { user, loading }        = useAuth();
+  const [page,       setPage]    = useState('dashboard');
+  const [alertCount, setAlerts]  = useState(0);
+  const [selectedPt, setPt]      = useState(null);
+  const [lastReport, setReport]  = useState(null);
 
   useEffect(() => {
-    if (user) {
-      fetchAlertCount();
-      const interval = setInterval(fetchAlertCount, 30000);
-      return () => clearInterval(interval);
-    }
+    if (!user) return;
+    const fetch = () =>
+      getActiveAlerts()
+        .then(d => setAlerts(d.total || 0))
+        .catch(() => {});
+    fetch();
+    const id = setInterval(fetch, 30_000);
+    return () => clearInterval(id);
   }, [user]);
 
-  const fetchAlertCount = async () => {
-    try {
-      const data = await getActiveAlerts();
-      setAlertCount(data.total || 0);
-    } catch (err) {}
-  };
+  if (loading)  return <LoadingScreen />;
+  if (!user)    return <LoginPage />;
 
-  const handleNavigate = (newPage) => {
-    setPage(newPage);
-    setSelectedPt(null);
-  };
+  const navigate = (p) => { setPage(p); setPt(null); };
 
-  const handleSelectPatient = (patientId) => {
-    setSelectedPt(patientId);
-  };
-
-  // Not logged in → show login
-  if (!user) return <LoginPage />;
-
-  // Patient detail page (shared across roles)
+  // Patient detail overrides normal page
   if (selectedPt) {
     return (
-      <Layout
-        activePage={page}
-        onNavigate={handleNavigate}
-        alertCount={alertCount}
-      >
-        <PatientDetail
-          patientId={selectedPt}
-          onBack={() => setSelectedPt(null)}
-        />
+      <Layout activePage={page} onNavigate={navigate} alertCount={alertCount}>
+        <PatientDetail patientId={selectedPt} onBack={() => setPt(null)} />
       </Layout>
     );
   }
 
   const renderPage = () => {
-
-    // ── ADMIN PAGES ──
     if (user.role === 'admin') {
       switch (page) {
-        case 'dashboard': return <AdminDashboard onNavigate={handleNavigate} />;
-        case 'patients':  return <LiveMonitor onSelectPatient={handleSelectPatient} />;
-        case 'monitor':   return <LiveMonitor onSelectPatient={handleSelectPatient} />;
+        case 'dashboard': return <AdminDashboard onNavigate={navigate} />;
+        case 'patients':
+        case 'monitor':   return <LiveMonitor onSelectPatient={setPt} />;
         case 'alerts':    return <AlertsPage />;
-        case 'analytics': return (
-          <div className="card" style={{ padding: '40px', textAlign: 'center' }}>
-            <p style={{ fontSize: '48px' }}>📊</p>
-            <h3>Analytics Dashboard</h3>
-            <p style={{ color: '#6b7280' }}>
-              Connect Power BI here — Coming in next phase!
-            </p>
-          </div>
-        );
-        case 'pipeline': return (
-          <div className="card" style={{ padding: '40px', textAlign: 'center' }}>
-            <p style={{ fontSize: '48px' }}>🔄</p>
-            <h3>Azure Data Pipeline</h3>
-            <p style={{ color: '#6b7280' }}>
-              Azure Data Factory integration — Coming in next phase!
-            </p>
-          </div>
-        );
-        default: return <AdminDashboard onNavigate={handleNavigate} />;
+        case 'analytics': return <AnalyticsDashboard />;
+        case 'pipeline':  return <DataPipelinePage />;
+        default:          return <AdminDashboard onNavigate={navigate} />;
       }
     }
 
-    // ── DOCTOR PAGES ──
     if (user.role === 'doctor') {
       switch (page) {
-        case 'dashboard': return (
-          <DoctorDashboard
-            onNavigate={handleNavigate}
-            onSelectPatient={handleSelectPatient}
-          />
-        );
-        case 'patients': return <LiveMonitor onSelectPatient={handleSelectPatient} />;
-        case 'analyze':  return (
-          <div style={{ display: 'grid', gridTemplateColumns: lastReport ? '1fr 1fr' : '600px', gap: '16px' }}>
-            <PatientForm onAnalysisComplete={(r) => setLastReport(r)} />
+        case 'dashboard': return <DoctorDashboard onNavigate={navigate} onSelectPatient={setPt} />;
+        case 'patients':  return <LiveMonitor onSelectPatient={setPt} />;
+        case 'analyze':   return (
+          <div style={{ display: 'grid', gridTemplateColumns: lastReport ? '1fr 1fr' : '600px', gap: '20px' }}>
+            <PatientForm onAnalysisComplete={setReport} />
             {lastReport && <AgentReport report={lastReport} />}
           </div>
         );
-        case 'alerts':  return <AlertsPage />;
-        case 'reports': return <LiveMonitor onSelectPatient={handleSelectPatient} />;
-        case 'qa':      return <div style={{ maxWidth: '800px' }}><ClinicalQA /></div>;
-        default: return (
-          <DoctorDashboard
-            onNavigate={handleNavigate}
-            onSelectPatient={handleSelectPatient}
-          />
-        );
+        case 'alerts':    return <AlertsPage />;
+        case 'reports':   return <LiveMonitor onSelectPatient={setPt} />;
+        case 'qa':        return <div style={{ maxWidth: '800px' }}><ClinicalQA /></div>;
+        default:          return <DoctorDashboard onNavigate={navigate} onSelectPatient={setPt} />;
       }
     }
 
-    // ── NURSE PAGES ──
     if (user.role === 'nurse') {
       switch (page) {
-        case 'dashboard': return (
-          <NurseDashboard
-            onNavigate={handleNavigate}
-            onSelectPatient={handleSelectPatient}
-          />
-        );
-        case 'monitor':  return <LiveMonitor onSelectPatient={handleSelectPatient} />;
-        case 'vitals':   return <NurseVitals />;
-        case 'alerts':   return <AlertsPage />;
-        case 'handover': return (
-          <div className="card" style={{ padding: '40px', textAlign: 'center' }}>
-            <p style={{ fontSize: '48px' }}>📝</p>
-            <h3>Shift Handover Notes</h3>
-            <p style={{ color: '#6b7280' }}>Coming soon!</p>
-          </div>
-        );
-        default: return (
-          <NurseDashboard
-            onNavigate={handleNavigate}
-            onSelectPatient={handleSelectPatient}
-          />
-        );
+        case 'dashboard': return <NurseDashboard onNavigate={navigate} onSelectPatient={setPt} />;
+        case 'monitor':   return <LiveMonitor onSelectPatient={setPt} />;
+        case 'vitals':    return <NurseVitals />;
+        case 'alerts':    return <AlertsPage />;
+        case 'handover':  return <ShiftHandover />;
+        default:          return <NurseDashboard onNavigate={navigate} onSelectPatient={setPt} />;
       }
     }
 
-    // ── PATIENT PAGES ──
     if (user.role === 'patient') {
       switch (page) {
-        case 'dashboard': return <PatientHome onNavigate={handleNavigate} />;
-        case 'vitals':    return <PatientHome onNavigate={handleNavigate} />;
-        case 'reports':   return <PatientHome onNavigate={handleNavigate} />;
-        case 'ask':       return <PatientAsk />;
-        default:          return <PatientHome onNavigate={handleNavigate} />;
+        case 'dashboard':
+        case 'vitals':
+        case 'reports':  return <PatientHome onNavigate={navigate} />;
+        case 'ask':      return <PatientAsk />;
+        default:         return <PatientHome onNavigate={navigate} />;
       }
     }
 
-    return <div>Page not found</div>;
+    return <ComingSoon icon="🔍" title="Page Not Found" desc="This page doesn't exist" />;
   };
 
   return (
-    <Layout
-      activePage={page}
-      onNavigate={handleNavigate}
-      alertCount={alertCount}
-    >
+    <Layout activePage={page} onNavigate={navigate} alertCount={alertCount}>
       {renderPage()}
+      <ChatBot />
     </Layout>
   );
 }
 
-// Wrap with Auth Provider
-function App() {
+// ── Coming Soon placeholder ───────────────────────────────────────────────────
+const ComingSoon = ({ icon, title, desc }) => (
+  <div className="card animate-fade" style={{
+    padding: '64px 40px', textAlign: 'center', maxWidth: '480px', margin: '0 auto',
+  }}>
+    <div style={{ fontSize: '48px', marginBottom: '16px', lineHeight: 1 }}>{icon}</div>
+    <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px', color: 'var(--text)' }}>
+      {title}
+    </h3>
+    <p style={{ fontSize: '14px', color: 'var(--text-muted)' }}>{desc}</p>
+  </div>
+);
+
+
+// ── Root ──────────────────────────────────────────────────────────────────────
+export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
-
-export default App;

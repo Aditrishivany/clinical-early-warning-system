@@ -14,7 +14,6 @@ class WarningAgent:
 
     def __init__(self):
         self.name = "Warning Agent"
-        print(f"  ✅ {self.name} initialized")
 
     def analyze(self, patient_data: dict, prediction: dict) -> dict:
         """Analyze vitals and generate specific warnings."""

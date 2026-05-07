@@ -36,16 +36,11 @@ const NurseVitals = () => {
     setSaved(false);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/analyze', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(form),
-      });
-      const data = await response.json();
+      const data = await analyzePatient(form);
       setResult(data.report);
       setSaved(true);
     } catch (err) {
-      setError('Failed to submit. Is the API running?');
+      setError(`Failed to submit: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -71,7 +66,7 @@ const NurseVitals = () => {
         {/* Form */}
         <div className="card" style={{ padding: '24px' }}>
           <h2 style={{ margin: '0 0 6px 0', fontSize: '18px', fontWeight: '700' }}>
-            ❤️ Record Patient Vitals
+            Record Patient Vitals
           </h2>
           <p style={{ margin: '0 0 20px 0', fontSize: '13px', color: '#6b7280' }}>
             Enter observations to trigger AI clinical assessment

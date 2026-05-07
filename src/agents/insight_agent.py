@@ -14,7 +14,6 @@ class InsightAgent:
 
     def __init__(self):
         self.name = "Insight Agent"
-        print(f"  ✅ {self.name} initialized")
 
     def analyze(
         self,

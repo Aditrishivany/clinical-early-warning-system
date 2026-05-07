@@ -14,7 +14,6 @@ class TriageAgent:
 
     def __init__(self):
         self.name = "Triage Agent"
-        print(f"  ✅ {self.name} initialized")
 
     def analyze(self, patient_data: dict, prediction: dict) -> dict:
         """

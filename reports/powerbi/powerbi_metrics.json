@@ -1,0 +1,15 @@
+{
+  "cards": [
+    "Total Patients",
+    "High Risk Patients",
+    "Active Alerts",
+    "Average NEWS2 Score"
+  ],
+  "charts": [
+    "Risk distribution by ward",
+    "NEWS2 trend over time",
+    "SpO2 and heart-rate trend by patient",
+    "Alert severity counts"
+  ],
+  "refresh_source": "SQLite locally; Azure SQL connection string in production"
+}

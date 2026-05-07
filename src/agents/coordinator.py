@@ -16,11 +16,9 @@ class AgentCoordinator:
     """
 
     def __init__(self):
-        print("\n  🤖 Initializing Multi-Agent System...")
         self.triage_agent  = TriageAgent()
         self.warning_agent = WarningAgent()
         self.insight_agent = InsightAgent()
-        print("  ✅ All agents ready!\n")
 
     def run(self, patient_data: dict, prediction: dict) -> dict:
         """
@@ -34,25 +32,17 @@ class AgentCoordinator:
             Complete clinical report from all agents
         """
 
-        print(f"  🔄 Running agents for patient: "
-              f"{patient_data.get('patient_id', 'Unknown')}")
 
         start_time = datetime.now()
 
-        # ── Step 1: Triage Agent ──
-        print("  → Triage Agent analyzing...")
         triage_result = self.triage_agent.analyze(
             patient_data, prediction
         )
 
-        # ── Step 2: Warning Agent ──
-        print("  → Warning Agent analyzing...")
         warning_result = self.warning_agent.analyze(
             patient_data, prediction
         )
 
-        # ── Step 3: Insight Agent ──
-        print("  → Insight Agent analyzing...")
         insight_result = self.insight_agent.analyze(
             patient_data, prediction,
             triage_result, warning_result
@@ -93,7 +83,6 @@ class AgentCoordinator:
             ),
         }
 
-        print(f"  ✅ Report generated in {duration:.2f}s")
         return report
 
     def _get_alert_level(

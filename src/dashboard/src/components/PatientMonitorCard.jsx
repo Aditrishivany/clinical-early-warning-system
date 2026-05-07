@@ -1,4 +1,5 @@
-// File: src/dashboard/src/components/PatientMonitorCard.jsx
+import { Clock } from 'lucide-react';
+
 
 const VitalBadge = ({ label, value, unit, warning, critical }) => {
   let color = '#16a34a';
@@ -117,8 +118,9 @@ const PatientMonitorCard = ({ patient, onClick }) => {
         alignItems:     'center',
         borderTop:      '1px solid #f3f4f6',
       }}>
-        <span style={{ fontSize: '11px', color: '#6b7280' }}>
-          🕐 {new Date(patient.predicted_at).toLocaleTimeString()}
+        <span style={{ fontSize: '11px', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <Clock size={11} />
+          {new Date(patient.predicted_at).toLocaleTimeString()}
         </span>
         <span style={{ fontSize: '11px', color: '#2563eb' }}>
           View Details →

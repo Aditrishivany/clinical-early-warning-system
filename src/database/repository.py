@@ -1,21 +1,24 @@
 """
-File: src/database/repository.py
-Purpose: Functions to save and retrieve data from database
+Data access layer — clean SQL queries, proper transactions, audit logging.
 """
 
+import logging
 from sqlalchemy.orm import Session
+from sqlalchemy import func, desc
 from datetime import datetime
+from typing import Optional
+
 from src.database.models import (
-    Patient, VitalReading, Prediction, AgentReport, Alert
+    Patient, VitalReading, Prediction, AgentReport,
+    Alert, AuditLog, ConversationHistory
 )
 
+logger = logging.getLogger(__name__)
 
-# ─────────────────────────────────────────
-# PATIENT FUNCTIONS
-# ─────────────────────────────────────────
+
+# ── Patient ──────────────────────────────────────────────────────────────────
+
 def get_or_create_patient(db: Session, patient_data: dict) -> Patient:
-    """Get existing patient or create new one."""
-
     patient = db.query(Patient).filter(
         Patient.patient_id == patient_data["patient_id"]
     ).first()
@@ -35,27 +38,16 @@ def get_or_create_patient(db: Session, patient_data: dict) -> Patient:
 
 
 def get_all_patients(db: Session) -> list:
-    """Get all patients."""
-    return db.query(Patient).all()
+    return db.query(Patient).filter(Patient.is_discharged == False).all()
 
 
-def get_patient_by_id(db: Session, patient_id: str) -> Patient:
-    """Get single patient by ID."""
-    return db.query(Patient).filter(
-        Patient.patient_id == patient_id
-    ).first()
+def get_patient_by_id(db: Session, patient_id: str) -> Optional[Patient]:
+    return db.query(Patient).filter(Patient.patient_id == patient_id).first()
 
 
-# ─────────────────────────────────────────
-# VITAL READING FUNCTIONS
-# ─────────────────────────────────────────
-def save_vital_reading(
-    db: Session,
-    patient_data: dict,
-    news2_score: int
-) -> VitalReading:
-    """Save a new vital signs reading."""
+# ── Vital Readings ────────────────────────────────────────────────────────────
 
+def save_vital_reading(db: Session, patient_data: dict, news2_score: int) -> VitalReading:
     reading = VitalReading(
         patient_id       = patient_data["patient_id"],
         heart_rate       = patient_data.get("heart_rate"),
@@ -73,45 +65,31 @@ def save_vital_reading(
             patient_data.get("systolic_bp", 0) -
             patient_data.get("diastolic_bp", 0)
         ),
-        shock_index      = round(
+        shock_index = round(
             patient_data.get("heart_rate", 0) /
             max(patient_data.get("systolic_bp", 1), 1), 3
         ),
     )
-
     db.add(reading)
     db.commit()
     db.refresh(reading)
     return reading
 
 
-def get_patient_vitals_history(
-    db: Session,
-    patient_id: str,
-    limit: int = 20
-) -> list:
-    """Get recent vital readings for a patient."""
+def get_patient_vitals_history(db: Session, patient_id: str, limit: int = 20) -> list:
     return (
         db.query(VitalReading)
         .filter(VitalReading.patient_id == patient_id)
-        .order_by(VitalReading.recorded_at.desc())
+        .order_by(desc(VitalReading.recorded_at))
         .limit(limit)
         .all()
     )
 
 
-# ─────────────────────────────────────────
-# PREDICTION FUNCTIONS
-# ─────────────────────────────────────────
-def save_prediction(
-    db: Session,
-    patient_id: str,
-    prediction: dict
-) -> Prediction:
-    """Save ML prediction result."""
+# ── Predictions ───────────────────────────────────────────────────────────────
 
+def save_prediction(db: Session, patient_id: str, prediction: dict) -> Prediction:
     probs = prediction.get("probabilities", {})
-
     pred = Prediction(
         patient_id     = patient_id,
         risk_level     = prediction.get("risk_level"),
@@ -125,44 +103,48 @@ def save_prediction(
         top_concerns   = prediction.get("top_concerns", []),
         recommendation = prediction.get("recommendation", ""),
     )
-
     db.add(pred)
     db.commit()
     db.refresh(pred)
     return pred
 
 
-def get_recent_predictions(
-    db: Session,
-    limit: int = 50
-) -> list:
-    """Get most recent predictions across all patients."""
+def get_recent_predictions(db: Session, limit: int = 50) -> list:
     return (
         db.query(Prediction)
-        .order_by(Prediction.predicted_at.desc())
+        .order_by(desc(Prediction.predicted_at))
         .limit(limit)
         .all()
     )
 
 
 def get_high_risk_patients(db: Session) -> list:
-    """Get unique patients with latest prediction."""
-
+    """
+    Efficient SQL query: get the latest prediction per patient,
+    sorted by risk level descending.
+    Uses a correlated subquery instead of loading all rows into Python.
+    """
     try:
-        all_preds = db.query(Prediction).order_by(
-            Prediction.predicted_at.desc()
-        ).all()
+        # Subquery: max predicted_at per patient
+        latest_subq = (
+            db.query(
+                Prediction.patient_id,
+                func.max(Prediction.predicted_at).label("max_at"),
+            )
+            .group_by(Prediction.patient_id)
+            .subquery()
+        )
 
-        # Get latest prediction per patient
-        seen     = set()
-        latest   = []
-        for pred in all_preds:
-            if pred.patient_id not in seen:
-                seen.add(pred.patient_id)
-                latest.append(pred)
-
-        # Return all patients sorted by risk
-        latest.sort(key=lambda x: x.risk_level, reverse=True)
+        latest_preds = (
+            db.query(Prediction)
+            .join(
+                latest_subq,
+                (Prediction.patient_id == latest_subq.c.patient_id) &
+                (Prediction.predicted_at == latest_subq.c.max_at),
+            )
+            .order_by(desc(Prediction.risk_level), desc(Prediction.predicted_at))
+            .all()
+        )
 
         return [
             {
@@ -173,22 +155,16 @@ def get_high_risk_patients(db: Session) -> list:
                 "news2_score":  p.news2_score or 0,
                 "predicted_at": str(p.predicted_at),
             }
-            for p in latest
+            for p in latest_preds
         ]
-    except Exception as e:
-        print(f"Error in get_high_risk_patients: {e}")
+    except Exception:
+        logger.exception("Error fetching high-risk patients")
         return []
 
 
-# ─────────────────────────────────────────
-# AGENT REPORT FUNCTIONS
-# ─────────────────────────────────────────
-def save_agent_report(
-    db: Session,
-    report: dict
-) -> AgentReport:
-    """Save full agent report."""
+# ── Agent Reports ─────────────────────────────────────────────────────────────
 
+def save_agent_report(db: Session, report: dict) -> AgentReport:
     agent_report = AgentReport(
         report_id         = report.get("report_id"),
         patient_id        = report.get("patient_id"),
@@ -198,57 +174,40 @@ def save_agent_report(
         warning_result    = report.get("warnings"),
         insight_result    = report.get("insights"),
         prediction        = report.get("prediction"),
-        sepsis_protocol   = report.get(
-            "insights", {}
-        ).get("sepsis_protocol", False),
+        sepsis_protocol   = report.get("insights", {}).get("sepsis_protocol", False),
         processing_time   = report.get("processing_time"),
     )
-
     db.add(agent_report)
     db.commit()
     db.refresh(agent_report)
     return agent_report
 
 
-def get_patient_reports(
-    db: Session,
-    patient_id: str,
-    limit: int = 10
-) -> list:
-    """Get recent reports for a patient."""
+def get_patient_reports(db: Session, patient_id: str, limit: int = 10) -> list:
     return (
         db.query(AgentReport)
         .filter(AgentReport.patient_id == patient_id)
-        .order_by(AgentReport.generated_at.desc())
+        .order_by(desc(AgentReport.generated_at))
         .limit(limit)
         .all()
     )
 
 
-# ─────────────────────────────────────────
-# ALERT FUNCTIONS
-# ─────────────────────────────────────────
-def save_alerts(
-    db: Session,
-    patient_id: str,
-    warnings: dict
-) -> list:
-    """Save alerts — resolve old ones first."""
+# ── Alerts ────────────────────────────────────────────────────────────────────
 
-    # Auto-resolve previous alerts for this patient
+def save_alerts(db: Session, patient_id: str, warnings: dict) -> list:
+    # Auto-resolve previous unresolved alerts for this patient
     db.query(Alert).filter(
         Alert.patient_id == patient_id,
-        Alert.is_resolved == False
+        Alert.is_resolved == False,
     ).update({
         "is_resolved": True,
-        "resolved_at": datetime.now(),
-        "resolved_by": "Auto-resolved by new assessment"
-    })
-    db.commit()
+        "resolved_at": datetime.utcnow(),
+        "resolved_by": "System — superseded by new assessment",
+    }, synchronize_session=False)
 
     saved = []
 
-    # Only save CRITICAL and WARNING alerts
     for crit in warnings.get("critical", []):
         alert = Alert(
             patient_id = patient_id,
@@ -287,51 +246,107 @@ def save_alerts(
 
 
 def get_active_alerts(db: Session) -> list:
-    """Get all unresolved alerts."""
     return (
         db.query(Alert)
         .filter(Alert.is_resolved == False)
-        .order_by(Alert.created_at.desc())
+        .order_by(desc(Alert.created_at))
         .all()
     )
 
 
-# ─────────────────────────────────────────
-# DASHBOARD STATS
-# ─────────────────────────────────────────
-def get_dashboard_stats(db: Session) -> dict:
-    """Get accurate summary statistics."""
+# ── Dashboard Stats ───────────────────────────────────────────────────────────
 
-    # Simple direct queries that work
-    total_patients = db.query(Patient).count()
+def get_dashboard_stats(db: Session) -> dict:
+    total_patients = db.query(Patient).filter(Patient.is_discharged == False).count()
     total_readings = db.query(VitalReading).count()
 
-    # Get all predictions
-    all_preds = db.query(Prediction).all()
+    # Latest risk distribution using efficient SQL subquery
+    latest_subq = (
+        db.query(
+            Prediction.patient_id,
+            func.max(Prediction.predicted_at).label("max_at"),
+        )
+        .group_by(Prediction.patient_id)
+        .subquery()
+    )
 
-    # Get latest prediction per patient
-    latest = {}
-    for pred in all_preds:
-        pid = pred.patient_id
-        if pid not in latest:
-            latest[pid] = pred
-        else:
-            if pred.predicted_at > latest[pid].predicted_at:
-                latest[pid] = pred
+    latest_preds = (
+        db.query(Prediction)
+        .join(
+            latest_subq,
+            (Prediction.patient_id == latest_subq.c.patient_id) &
+            (Prediction.predicted_at == latest_subq.c.max_at),
+        )
+        .all()
+    )
 
-    high_risk   = sum(1 for p in latest.values() if p.risk_level == 2)
-    medium_risk = sum(1 for p in latest.values() if p.risk_level == 1)
-    low_risk    = sum(1 for p in latest.values() if p.risk_level == 0)
+    high_risk   = sum(1 for p in latest_preds if p.risk_level == 2)
+    medium_risk = sum(1 for p in latest_preds if p.risk_level == 1)
+    low_risk    = sum(1 for p in latest_preds if p.risk_level == 0)
 
-    active_alerts = db.query(Alert).filter(
-        Alert.is_resolved == False
-    ).count()
+    active_alerts = db.query(Alert).filter(Alert.is_resolved == False).count()
 
     return {
-        "total_patients":  total_patients,
-        "total_readings":  total_readings,
-        "active_alerts":   active_alerts,
-        "high_risk":       high_risk,
-        "medium_risk":     medium_risk,
-        "low_risk":        low_risk,
+        "total_patients": total_patients,
+        "total_readings": total_readings,
+        "active_alerts":  active_alerts,
+        "high_risk":      high_risk,
+        "medium_risk":    medium_risk,
+        "low_risk":       low_risk,
     }
+
+
+# ── Conversation History (persistent chat) ────────────────────────────────────
+
+def get_conversation_history(db: Session, session_id: str, limit: int = 20) -> list:
+    rows = (
+        db.query(ConversationHistory)
+        .filter(ConversationHistory.session_id == session_id)
+        .order_by(ConversationHistory.created_at.asc())
+        .limit(limit)
+        .all()
+    )
+    return [{"role": r.role, "content": r.content} for r in rows]
+
+
+def append_conversation(db: Session, session_id: str, user_id: str, role: str, content: str):
+    entry = ConversationHistory(
+        session_id = session_id,
+        user_id    = user_id,
+        role       = role,
+        content    = content,
+    )
+    db.add(entry)
+    db.commit()
+
+
+def clear_conversation(db: Session, session_id: str):
+    db.query(ConversationHistory).filter(
+        ConversationHistory.session_id == session_id
+    ).delete()
+    db.commit()
+
+
+# ── Audit Log ─────────────────────────────────────────────────────────────────
+
+def write_audit(
+    db: Session,
+    action: str,
+    performed_by: str,
+    patient_id: Optional[str] = None,
+    details: Optional[dict] = None,
+    ip_address: Optional[str] = None,
+):
+    log = AuditLog(
+        action       = action,
+        performed_by = performed_by,
+        patient_id   = patient_id,
+        details      = details or {},
+        ip_address   = ip_address,
+    )
+    db.add(log)
+    try:
+        db.commit()
+    except Exception:
+        db.rollback()
+        logger.warning("Failed to write audit log for action=%s", action)

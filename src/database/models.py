@@ -1,48 +1,43 @@
 """
-File: src/database/models.py
-Purpose: Complete database schema for real clinical system
+Database schema for the Clinical Early Warning System.
 """
 
 from sqlalchemy import (
     Column, Integer, Float, String,
-    DateTime, Boolean, Text, ForeignKey, JSON
+    DateTime, Boolean, Text, ForeignKey, JSON, Index
 )
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from src.database.connection import Base
 
 
-# ─────────────────────────────────────────
-# TABLE 1: Staff (Doctors + Nurses + Admin)
-# ─────────────────────────────────────────
 class Staff(Base):
     __tablename__ = "staff"
 
     id          = Column(Integer, primary_key=True)
-    staff_id    = Column(String(50), unique=True, index=True)
-    name        = Column(String(100))
-    role        = Column(String(20))   # admin/doctor/nurse
+    staff_id    = Column(String(50), unique=True, index=True, nullable=False)
+    name        = Column(String(100), nullable=False)
+    role        = Column(String(20), nullable=False)    # admin/doctor/nurse
     title       = Column(String(100))
     specialty   = Column(String(100))
     ward        = Column(String(50))
     hospital    = Column(String(100), default="City General Hospital")
-    password    = Column(String(100))  # simple demo password
+    # Stores bcrypt hash or plain-text (legacy); always write bcrypt going forward
+    password    = Column(String(200))
     avatar      = Column(String(10))
-    is_active   = Column(Boolean, default=True)
-    created_at  = Column(DateTime, default=datetime.now)
+    is_active   = Column(Boolean, default=True, nullable=False)
+    created_at  = Column(DateTime, default=datetime.utcnow, nullable=False)
+    last_login  = Column(DateTime, nullable=True)
 
     def __repr__(self):
         return f"<Staff {self.staff_id} ({self.role})>"
 
 
-# ─────────────────────────────────────────
-# TABLE 2: Patients
-# ─────────────────────────────────────────
 class Patient(Base):
     __tablename__ = "patients"
 
     id            = Column(Integer, primary_key=True)
-    patient_id    = Column(String(50), unique=True, index=True)
+    patient_id    = Column(String(50), unique=True, index=True, nullable=False)
     name          = Column(String(100))
     age           = Column(Float)
     gender        = Column(String(10))
@@ -51,57 +46,49 @@ class Patient(Base):
     allergies     = Column(JSON, default=list)
     ward          = Column(String(50))
     bed_number    = Column(String(20))
-    admitted_at   = Column(DateTime, default=datetime.now)
-    is_discharged = Column(Boolean, default=False)
+    admitted_at   = Column(DateTime, default=datetime.utcnow)
+    is_discharged = Column(Boolean, default=False, nullable=False)
     discharged_at = Column(DateTime, nullable=True)
-    created_at    = Column(DateTime, default=datetime.now)
-    password      = Column(String(100), default="patient123")
+    created_at    = Column(DateTime, default=datetime.utcnow, nullable=False)
+    # Bcrypt hash or legacy plain-text
+    password      = Column(String(200), default="patient123")
 
-    # Relationships
-    vitals      = relationship("VitalReading",  back_populates="patient")
-    predictions = relationship("Prediction",    back_populates="patient")
-    alerts      = relationship("Alert",         back_populates="patient")
-    assignments = relationship("PatientAssignment", back_populates="patient")
+    vitals      = relationship("VitalReading",       back_populates="patient", cascade="all, delete-orphan")
+    predictions = relationship("Prediction",         back_populates="patient", cascade="all, delete-orphan")
+    alerts      = relationship("Alert",              back_populates="patient", cascade="all, delete-orphan")
+    assignments = relationship("PatientAssignment",  back_populates="patient")
 
     def __repr__(self):
         return f"<Patient {self.patient_id}>"
 
 
-# ─────────────────────────────────────────
-# TABLE 3: Patient Assignments
-# ─────────────────────────────────────────
 class PatientAssignment(Base):
     __tablename__ = "patient_assignments"
 
     id          = Column(Integer, primary_key=True)
-    patient_id  = Column(String(50), ForeignKey("patients.patient_id"))
-    doctor_id   = Column(String(50), ForeignKey("staff.staff_id"))
-    nurse_id    = Column(String(50), ForeignKey("staff.staff_id"))
+    patient_id  = Column(String(50), ForeignKey("patients.patient_id"), nullable=False)
+    doctor_id   = Column(String(50), ForeignKey("staff.staff_id"), nullable=True)
+    nurse_id    = Column(String(50), ForeignKey("staff.staff_id"), nullable=True)
     ward        = Column(String(50))
     bed_number  = Column(String(20))
-    assigned_at = Column(DateTime, default=datetime.now)
-    is_active   = Column(Boolean, default=True)
+    assigned_at = Column(DateTime, default=datetime.utcnow)
+    is_active   = Column(Boolean, default=True, nullable=False)
 
-    # Relationships
     patient = relationship("Patient", back_populates="assignments")
 
     def __repr__(self):
         return f"<Assignment {self.patient_id}>"
 
 
-# ─────────────────────────────────────────
-# TABLE 4: Vital Readings
-# ─────────────────────────────────────────
 class VitalReading(Base):
     __tablename__ = "vital_readings"
 
     id               = Column(Integer, primary_key=True, index=True)
-    patient_id       = Column(String(50), ForeignKey("patients.patient_id"))
-    recorded_at      = Column(DateTime, default=datetime.now)
-    recorded_by      = Column(String(50), default="AUTO")  # AUTO or staff_id
-    source           = Column(String(20), default="monitor") # monitor/manual
+    patient_id       = Column(String(50), ForeignKey("patients.patient_id"), nullable=False)
+    recorded_at      = Column(DateTime, default=datetime.utcnow, nullable=False)
+    recorded_by      = Column(String(50), default="AUTO")
+    source           = Column(String(20), default="monitor")
 
-    # Core Vitals
     heart_rate        = Column(Float)
     systolic_bp       = Column(Float)
     diastolic_bp      = Column(Float)
@@ -113,28 +100,27 @@ class VitalReading(Base):
     glucose           = Column(Float)
     pain_score        = Column(Integer)
 
-    # Calculated
     news2_score       = Column(Integer)
     pulse_pressure    = Column(Float)
     shock_index       = Column(Float)
 
-    # Relationship
     patient = relationship("Patient", back_populates="vitals")
 
+    __table_args__ = (
+        Index("ix_vitals_patient_recorded", "patient_id", "recorded_at"),
+    )
+
     def __repr__(self):
-        return f"<VitalReading {self.patient_id}>"
+        return f"<VitalReading {self.patient_id} @ {self.recorded_at}>"
 
 
-# ─────────────────────────────────────────
-# TABLE 5: ML Predictions
-# ─────────────────────────────────────────
 class Prediction(Base):
     __tablename__ = "predictions"
 
     id             = Column(Integer, primary_key=True, index=True)
-    patient_id     = Column(String(50), ForeignKey("patients.patient_id"))
-    predicted_at   = Column(DateTime, default=datetime.now)
-    risk_level     = Column(Integer)
+    patient_id     = Column(String(50), ForeignKey("patients.patient_id"), nullable=False)
+    predicted_at   = Column(DateTime, default=datetime.utcnow, nullable=False)
+    risk_level     = Column(Integer, nullable=False)
     risk_label     = Column(String(20))
     confidence     = Column(Float)
     news2_score    = Column(Integer)
@@ -145,23 +131,23 @@ class Prediction(Base):
     top_concerns   = Column(JSON)
     recommendation = Column(Text)
 
-    # Relationship
     patient = relationship("Patient", back_populates="predictions")
+
+    __table_args__ = (
+        Index("ix_pred_patient_time", "patient_id", "predicted_at"),
+    )
 
     def __repr__(self):
         return f"<Prediction {self.patient_id}: {self.risk_label}>"
 
 
-# ─────────────────────────────────────────
-# TABLE 6: Agent Reports
-# ─────────────────────────────────────────
 class AgentReport(Base):
     __tablename__ = "agent_reports"
 
     id                = Column(Integer, primary_key=True)
     report_id         = Column(String(50), unique=True, index=True)
-    patient_id        = Column(String(50), index=True)
-    generated_at      = Column(DateTime, default=datetime.now)
+    patient_id        = Column(String(50), index=True, nullable=False)
+    generated_at      = Column(DateTime, default=datetime.utcnow, nullable=False)
     alert_level       = Column(String(20))
     executive_summary = Column(Text)
     triage_result     = Column(JSON)
@@ -175,50 +161,66 @@ class AgentReport(Base):
         return f"<AgentReport {self.report_id}>"
 
 
-# ─────────────────────────────────────────
-# TABLE 7: Alerts (with full lifecycle)
-# ─────────────────────────────────────────
 class Alert(Base):
     __tablename__ = "alerts"
 
     id          = Column(Integer, primary_key=True, index=True)
-    patient_id  = Column(String(50), ForeignKey("patients.patient_id"))
-    created_at  = Column(DateTime, default=datetime.now)
+    patient_id  = Column(String(50), ForeignKey("patients.patient_id"), nullable=False)
+    created_at  = Column(DateTime, default=datetime.utcnow, nullable=False)
     alert_type  = Column(String(50))
     severity    = Column(String(20))
     message     = Column(Text)
     action      = Column(Text)
 
-    # Acknowledgment (Nurse)
     is_acknowledged  = Column(Boolean, default=False)
     acknowledged_at  = Column(DateTime, nullable=True)
     acknowledged_by  = Column(String(100), nullable=True)
 
-    # Resolution (Doctor)
     is_resolved      = Column(Boolean, default=False)
     resolved_at      = Column(DateTime, nullable=True)
     resolved_by      = Column(String(100), nullable=True)
     resolution_notes = Column(Text, nullable=True)
 
-    # Relationship
     patient = relationship("Patient", back_populates="alerts")
+
+    __table_args__ = (
+        Index("ix_alerts_patient_resolved", "patient_id", "is_resolved"),
+    )
 
     def __repr__(self):
         return f"<Alert {self.patient_id}: {self.alert_type}>"
 
 
-# ─────────────────────────────────────────
-# TABLE 8: Audit Log
-# ─────────────────────────────────────────
+class ConversationHistory(Base):
+    """Persistent chat history — replaces in-memory dict in rag.py."""
+    __tablename__ = "conversation_history"
+
+    id         = Column(Integer, primary_key=True)
+    session_id = Column(String(100), index=True, nullable=False)
+    user_id    = Column(String(100), nullable=False)
+    role       = Column(String(20), nullable=False)  # user/assistant/system
+    content    = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    __table_args__ = (
+        Index("ix_conv_session_created", "session_id", "created_at"),
+    )
+
+
 class AuditLog(Base):
     __tablename__ = "audit_log"
 
     id           = Column(Integer, primary_key=True)
-    timestamp    = Column(DateTime, default=datetime.now)
-    action       = Column(String(100))
-    performed_by = Column(String(100))
-    patient_id   = Column(String(50), nullable=True)
+    timestamp    = Column(DateTime, default=datetime.utcnow, nullable=False)
+    action       = Column(String(100), nullable=False)
+    performed_by = Column(String(100), nullable=False)
+    patient_id   = Column(String(50), nullable=True, index=True)
+    ip_address   = Column(String(45), nullable=True)
     details      = Column(JSON)
+
+    __table_args__ = (
+        Index("ix_audit_time", "timestamp"),
+    )
 
     def __repr__(self):
         return f"<AuditLog {self.action} by {self.performed_by}>"
