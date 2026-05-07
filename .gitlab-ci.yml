@@ -1,0 +1,78 @@
+image: python:3.11-slim
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+test:unit:
+  stage: test
+  before_script:
+    - python -m venv venv
+    - venv/bin/pip install -r requirements.txt --quiet
+  script:
+    - venv/bin/pytest tests/unit/ -v --tb=short
+  tags:
+    - shared
+
+test:integration:
+  stage: test
+  before_script:
+    - python -m venv venv
+    - venv/bin/pip install -r requirements.txt --quiet
+    - venv/bin/python scripts/simple_seed.py
+  script:
+    - venv/bin/pytest tests/integration/ -v --tb=short
+  tags:
+    - shared
+
+build:backend:
+  stage: build
+  image: docker:24
+  services:
+    - docker:24-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE/backend:latest .
+    - docker push $CI_REGISTRY_IMAGE/backend:latest
+  only:
+    - main
+  tags:
+    - shared
+
+build:frontend:
+  stage: build
+  image: docker:24
+  services:
+    - docker:24-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE/frontend:latest -f src/dashboard/Dockerfile.frontend src/dashboard/
+    - docker push $CI_REGISTRY_IMAGE/frontend:latest
+  only:
+    - main
+  tags:
+    - shared
+
+deploy:production:
+  stage: deploy
+  script:
+    - echo "Deploying to Azure..."
+  environment:
+    name: production
+    url: https://clinical-ai.azurewebsites.net
+  only:
+    - main
+  when: manual
+  tags:
+    - shared

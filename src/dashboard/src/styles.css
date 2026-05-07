@@ -1,0 +1,394 @@
+/* ═══════════════════════════════════════════
+   CLINICALAI — PLATINUM MEDICAL LUXURY THEME
+   Pure Class · Swiss Precision · Premium Feel
+═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+:root {
+  --bg:           #f5f7fa;
+  --bg-soft:      #eef1f6;
+  --white:        #ffffff;
+  --sidebar:      #0c1445;
+  --sidebar-hover:#111d5e;
+  --sidebar-active:#162074;
+
+  --blue:         #1e40af;
+  --blue-light:   #3b82f6;
+  --blue-soft:    #eff6ff;
+  --gold:         #b8960c;
+  --gold-light:   #d4af37;
+  --gold-soft:    #fefce8;
+  --platinum:     #8b95a5;
+
+  --success:      #065f46;
+  --success-bg:   #ecfdf5;
+  --danger:       #991b1b;
+  --danger-bg:    #fef2f2;
+  --warning:      #92400e;
+  --warning-bg:   #fffbeb;
+
+  --text:         #0a0a0f;
+  --text-secondary:#374151;
+  --text-muted:   #9ca3af;
+  --text-light:   #d1d5db;
+
+  --border:       #e8ecf0;
+  --border-strong:#d1d5db;
+
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --transition:      all 0.25s cubic-bezier(0.4,0,0.2,1);
+  --transition-fast: all 0.15s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+body {
+  font-family:      'Inter', -apple-system, sans-serif;
+  background-color: var(--bg);
+  color:            var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-soft); }
+::-webkit-scrollbar-thumb {
+  background:    linear-gradient(180deg, var(--blue-light), var(--blue));
+  border-radius: 3px;
+}
+
+/* ══════════════════════════════════════════
+   ANIMATIONS — Smooth & Luxurious
+══════════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+
+@keyframes slideRight {
+  from { opacity:0; transform:translateX(-16px); }
+  to   { opacity:1; transform:translateX(0);     }
+}
+
+@keyframes scaleIn {
+  from { opacity:0; transform:scale(0.97); }
+  to   { opacity:1; transform:scale(1);    }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(16,185,129,0.3); }
+  50%      { opacity:.8; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-4px); }
+}
+
+@keyframes alertBlink {
+  0%,100% { box-shadow: 0 0 0 0 rgba(153,27,27,0.3); }
+  50%      { box-shadow: 0 0 0 6px rgba(153,27,27,0); }
+}
+
+@keyframes goldShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes countUp {
+  from { transform: translateY(10px); opacity:0; }
+  to   { transform: translateY(0);    opacity:1; }
+}
+
+/* ── Classes ── */
+.animate-fade     { animation: fadeUp   0.45s cubic-bezier(0.4,0,0.2,1) both; }
+.animate-fade-in  { animation: fadeIn   0.3s  ease both; }
+.animate-slide    { animation: slideRight 0.35s cubic-bezier(0.4,0,0.2,1) both; }
+.animate-scale    { animation: scaleIn  0.3s  cubic-bezier(0.4,0,0.2,1) both; }
+.animate-float    { animation: float    3s    ease-in-out infinite; }
+.animate-pulse    { animation: pulse    2s    ease-in-out infinite; }
+.animate-alert    { animation: alertBlink 1.5s ease-in-out infinite; }
+
+/* Stagger delays */
+.stagger > *:nth-child(1) { animation-delay:0.05s; }
+.stagger > *:nth-child(2) { animation-delay:0.10s; }
+.stagger > *:nth-child(3) { animation-delay:0.15s; }
+.stagger > *:nth-child(4) { animation-delay:0.20s; }
+.stagger > *:nth-child(5) { animation-delay:0.25s; }
+.stagger > *:nth-child(6) { animation-delay:0.30s; }
+
+/* ══════════════════════════════════════════
+   CARDS
+══════════════════════════════════════════ */
+.card {
+  background:    var(--white);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-sm);
+  transition:    var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+.card-flat {
+  background:    var(--white);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.card-gold {
+  background:    var(--white);
+  border:        1px solid #e8d48f;
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-sm), 0 0 0 1px rgba(184,150,12,0.08);
+}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════════ */
+.display {
+  font-family:   'Playfair Display', serif;
+  font-weight:   700;
+  letter-spacing:-0.5px;
+  color:         var(--text);
+}
+
+.label {
+  font-size:     10px;
+  font-weight:   700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:         var(--text-muted);
+}
+
+.stat-number {
+  font-size:     38px;
+  font-weight:   800;
+  line-height:   1;
+  letter-spacing:-2px;
+  color:         var(--text);
+  animation:     countUp 0.5s ease both;
+}
+
+/* ══════════════════════════════════════════
+   BADGES — Refined
+══════════════════════════════════════════ */
+.badge {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           5px;
+  padding:       3px 10px;
+  border-radius: 20px;
+  font-size:     11px;
+  font-weight:   600;
+  letter-spacing:0.2px;
+}
+
+.badge-high {
+  background: #fef2f2;
+  color:      #991b1b;
+  border:     1px solid #fecaca;
+}
+
+.badge-medium {
+  background: #fffbeb;
+  color:      #92400e;
+  border:     1px solid #fde68a;
+}
+
+.badge-low {
+  background: #ecfdf5;
+  color:      #065f46;
+  border:     1px solid #a7f3d0;
+}
+
+.badge-critical {
+  background: #fef2f2;
+  color:      #991b1b;
+  border:     1px solid #fecaca;
+  animation:  alertBlink 1.5s infinite;
+}
+
+/* ══════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════ */
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             8px;
+  padding:         10px 20px;
+  border-radius:   var(--radius-sm);
+  border:          none;
+  font-family:     'Inter', sans-serif;
+  font-size:       13px;
+  font-weight:     600;
+  cursor:          pointer;
+  transition:      var(--transition);
+  letter-spacing:  0.2px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color:      white;
+  box-shadow: 0 2px 8px rgba(30,64,175,0.3);
+}
+.btn-primary:hover {
+  transform:  translateY(-1px);
+  box-shadow: 0 4px 16px rgba(30,64,175,0.4);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #b8960c, #d4af37);
+  color:      white;
+  box-shadow: 0 2px 8px rgba(184,150,12,0.3);
+}
+.btn-gold:hover {
+  transform:  translateY(-1px);
+  box-shadow: 0 4px 16px rgba(184,150,12,0.4);
+}
+
+.btn-ghost {
+  background:  transparent;
+  color:       var(--text-secondary);
+  border:      1px solid var(--border);
+}
+.btn-ghost:hover {
+  background:  var(--bg-soft);
+  border-color:var(--border-strong);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #991b1b, #dc2626);
+  color:      white;
+  box-shadow: 0 2px 8px rgba(153,27,27,0.3);
+}
+
+/* ══════════════════════════════════════════
+   INPUTS
+══════════════════════════════════════════ */
+.input {
+  width:         100%;
+  padding:       11px 14px;
+  background:    var(--white);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color:         var(--text);
+  font-family:   'Inter', sans-serif;
+  font-size:     14px;
+  transition:    var(--transition-fast);
+  outline:       none;
+  box-shadow:    var(--shadow-xs);
+}
+
+.input::placeholder { color: var(--text-light); }
+
+.input:focus {
+  border-color: var(--blue);
+  box-shadow:   0 0 0 3px rgba(30,64,175,0.08), var(--shadow-xs);
+}
+
+/* ══════════════════════════════════════════
+   TABLE
+══════════════════════════════════════════ */
+.table { width:100%; border-collapse:collapse; }
+
+.table th {
+  padding:       11px 16px;
+  text-align:    left;
+  font-size:     10px;
+  font-weight:   700;
+  color:         var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:0.8px;
+  border-bottom: 1px solid var(--border);
+  background:    #fafbfd;
+}
+
+.table td {
+  padding:       13px 16px;
+  font-size:     13px;
+  color:         var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  transition:    var(--transition-fast);
+}
+
+.table tr:hover td {
+  background: #f8faff;
+  color:      var(--text);
+}
+
+/* ══════════════════════════════════════════
+   DIVIDERS
+══════════════════════════════════════════ */
+.divider {
+  height:     1px;
+  background: var(--border);
+  margin:     16px 0;
+}
+
+.divider-gold {
+  height:     1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin:     16px 0;
+}
+
+/* ══════════════════════════════════════════
+   SHIMMER SKELETON
+══════════════════════════════════════════ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px
+  );
+  background-size: 400px;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ══════════════════════════════════════════
+   VITAL COLORS
+══════════════════════════════════════════ */
+.vital-normal  { color: #065f46; }
+.vital-warning { color: #92400e; }
+.vital-danger  { color: #991b1b; }
+
+/* ══════════════════════════════════════════
+   GOLD ACCENT LINE
+══════════════════════════════════════════ */
+.gold-line {
+  height:     2px;
+  background: linear-gradient(90deg, #b8960c, #d4af37, #b8960c);
+  background-size: 200% auto;
+  animation:  goldShimmer 3s linear infinite;
+  border-radius: 1px;
+}

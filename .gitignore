@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+*.db
+logs/
+*.log
+src/ml/models/*.joblib
+src/ml/models/*.onnx
+src/dashboard/node_modules/
+src/dashboard/dist/
+.vscode/
+.idea/
+.azure/
+.pytest_cache/
+notebooks/

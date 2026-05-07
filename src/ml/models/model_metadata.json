@@ -1,0 +1,54 @@
+{
+  "exported_at": "2026-05-07T05:55:31.688216",
+  "model_type": "XGBClassifier",
+  "feature_count": 31,
+  "feature_names": [
+    "heart_rate",
+    "systolic_bp",
+    "diastolic_bp",
+    "temperature",
+    "respiratory_rate",
+    "spo2",
+    "consciousness",
+    "urine_output",
+    "glucose",
+    "pain_score",
+    "age",
+    "gender_encoded",
+    "ward_encoded",
+    "age_group",
+    "news2_rr",
+    "news2_spo2",
+    "news2_sbp",
+    "news2_hr",
+    "news2_temp",
+    "news2_avpu",
+    "news2_total",
+    "pulse_pressure",
+    "map",
+    "shock_index",
+    "temp_deviation",
+    "spo2_deficit",
+    "resp_distress",
+    "hypotension",
+    "tachycardia",
+    "fever",
+    "shock_indicator"
+  ],
+  "classes": [
+    0,
+    1,
+    2
+  ],
+  "class_labels": [
+    "Low",
+    "Medium",
+    "High"
+  ],
+  "formats": {
+    "joblib": "early_warning_model.joblib",
+    "pipeline": "clinical_pipeline.joblib",
+    "onnx": "early_warning_model.onnx",
+    "json": "early_warning_model.json"
+  }
+}
