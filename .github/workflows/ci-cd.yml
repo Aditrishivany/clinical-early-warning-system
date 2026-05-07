@@ -27,6 +27,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Train ML model for tests
+        env:
+          DEBUG: 'false'
+        run: python src/ml/training/train_model.py
+
+      - name: Seed test database
+        env:
+          DEBUG: 'false'
+        run: python scripts/seed_data.py
+
       - name: Run pytest
         env:
           DEBUG: 'false'
