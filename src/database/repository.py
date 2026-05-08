@@ -146,17 +146,31 @@ def get_high_risk_patients(db: Session) -> list:
             .all()
         )
 
-        return [
-            {
-                "patient_id":   p.patient_id,
-                "risk_level":   p.risk_level,
-                "risk_label":   p.risk_label or "Low",
-                "confidence":   p.confidence or 0,
-                "news2_score":  p.news2_score or 0,
-                "predicted_at": str(p.predicted_at),
-            }
-            for p in latest_preds
-        ]
+        results = []
+        for p in latest_preds:
+            patient = get_patient_by_id(db, p.patient_id)
+            latest_vital = (
+                db.query(VitalReading)
+                .filter(VitalReading.patient_id == p.patient_id)
+                .order_by(desc(VitalReading.recorded_at))
+                .first()
+            )
+            results.append({
+                "patient_id":       p.patient_id,
+                "risk_level":       p.risk_level,
+                "risk_label":       p.risk_label or "Low",
+                "confidence":       p.confidence or 0,
+                "news2_score":      p.news2_score or 0,
+                "predicted_at":     str(p.predicted_at),
+                "ward":             patient.ward if patient else None,
+                "heart_rate":       latest_vital.heart_rate if latest_vital else None,
+                "systolic_bp":      latest_vital.systolic_bp if latest_vital else None,
+                "spo2":             latest_vital.spo2 if latest_vital else None,
+                "temperature":      latest_vital.temperature if latest_vital else None,
+                "respiratory_rate": latest_vital.respiratory_rate if latest_vital else None,
+            })
+
+        return results
     except Exception:
         logger.exception("Error fetching high-risk patients")
         return []

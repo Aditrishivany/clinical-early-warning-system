@@ -15,7 +15,10 @@ const PatientDetail = ({ patientId, onBack }) => {
   const [activeTab, setActiveTab] = useState('vitals');
 
   useEffect(() => {
-    if (patientId) fetchHistory();
+    if (!patientId) return;
+    fetchHistory();
+    const interval = setInterval(fetchHistory, 15_000);
+    return () => clearInterval(interval);
   }, [patientId]);
 
   const fetchHistory = async () => {

@@ -65,6 +65,117 @@ az keyvault create --resource-group rg-clinicalai --name clinicalai-kv
 
 6. Publish Power BI report using the Azure SQL database as the refresh source.
 
+## Azure SQL Live Database Migration
+
+Use this flow when the deployed backend must write directly to Azure SQL so Power BI can refresh from live cloud data.
+
+### 1. Create Azure SQL From Portal
+
+1. Azure Portal -> search **SQL databases** -> **Create**.
+2. Resource group: `rg-clinicalai`.
+3. Database name: `clinicalai`.
+4. Server: create a new server, for example `clinicalai-sql-aditri`.
+5. Authentication: SQL authentication.
+6. Admin login: `clinicaladmin`.
+7. Save the password securely.
+8. Networking:
+   - Public endpoint: Enabled.
+   - Allow Azure services and resources to access this server: Yes.
+   - Add your current client IP: Yes.
+9. Review + create.
+
+### 2. Use SQLAlchemy Connection String
+
+The App Service uses `pymssql`, so set `DATABASE_URL` like this:
+
+```text
+mssql+pymssql://clinicaladmin:<URL_ENCODED_PASSWORD>@clinicalai-sql-aditri.database.windows.net:1433/clinicalai
+```
+
+If the password has special characters, URL-encode them before pasting. Examples:
+
+| Character | Encoded |
+| --- | --- |
+| `@` | `%40` |
+| `#` | `%23` |
+| `%` | `%25` |
+| `&` | `%26` |
+| `+` | `%2B` |
+| `/` | `%2F` |
+
+### 3. Configure Backend App Service
+
+1. Azure Portal -> App Services -> `clinicalai-backend-aditri`.
+2. Settings -> Environment variables.
+3. Edit `DATABASE_URL` to the Azure SQL connection string.
+4. Keep `DEBUG=false`.
+5. Save.
+6. Overview -> Restart.
+
+### 4. Create Tables And Seed Users
+
+After restart, open backend Kudu:
+
+1. Backend App Service -> Advanced Tools -> Go.
+2. SSH (App).
+3. Run:
+
+```bash
+python scripts/seed_data.py
+```
+
+This creates the SQL tables and inserts demo staff/patient users.
+
+### 5. Verify Azure SQL Backend
+
+Open:
+
+```text
+https://clinicalai-backend-aditri-gdf3fgecfsendmcw.koreacentral-01.azurewebsites.net/health
+```
+
+Then test login:
+
+```text
+POST /api/v1/auth/login
+ADM001 / admin123
+```
+
+Then test a write endpoint:
+
+```text
+POST /api/v1/analyze
+```
+
+If it succeeds, vitals, predictions, alerts, and agent reports are now stored in Azure SQL.
+
+### 6. Connect Power BI
+
+1. Power BI Desktop -> Get data -> Azure -> Azure SQL Database.
+2. Server:
+
+```text
+clinicalai-sql-aditri.database.windows.net
+```
+
+3. Database:
+
+```text
+clinicalai
+```
+
+4. Data Connectivity mode:
+   - Import for scheduled refresh, or
+   - DirectQuery for near-live dashboard behavior.
+5. Select tables:
+   - `patients`
+   - `vital_readings`
+   - `predictions`
+   - `alerts`
+   - `agent_reports`
+   - `patient_assignments`
+6. Build visuals and publish to Power BI Service.
+
 ## Evaluation Demo Checklist
 
 - Open `/docs` and show the FastAPI APIs.

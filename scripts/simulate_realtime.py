@@ -8,13 +8,14 @@ import time
 import random
 import numpy as np
 import sys
+import os
 sys.path.append('.')
 
 from datetime import datetime
 from src.database.connection import SessionLocal
 from src.database.models import Patient, PatientAssignment
 
-API_URL       = "http://127.0.0.1:8000/api/v1/analyze"
+API_URL       = os.getenv("CLINICALAI_API_URL", "http://127.0.0.1:8000/api/v1/analyze")
 INTERVAL_SECS = 20
 
 print("=" * 60)
