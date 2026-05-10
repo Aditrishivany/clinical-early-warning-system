@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Users, AlertTriangle, Bell, BarChart2, Plus, Activity, Stethoscope } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { getHighRiskPatients, getDashboardStats, getActiveAlerts } from '../../services/api';
@@ -11,32 +11,37 @@ const DoctorDashboard = ({ onNavigate, onSelectPatient }) => {
   const [patients, setPatients]   = useState([]);
   const [stats,    setStats]      = useState(null);
   const [alerts,   setAlerts]     = useState([]);
+  const assignedPatientIds        = user?.assigned_patients || [];
 
-  useEffect(() => {
-    fetchData();
-    const id = setInterval(fetchData, 30_000);
-    return () => clearInterval(id);
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [p, s, a] = await Promise.all([
         getHighRiskPatients(),
         getDashboardStats(),
         getActiveAlerts(),
       ]);
-      setPatients(p.patients || []);
-      setStats(s);
-      setAlerts(a.alerts   || []);
-    } catch (err) { console.error(err); }
-  };
+      const assigned = user?.assigned_patients || [];
+      const scopedPatients = (p.patients || []).filter(patient => assigned.includes(patient.patient_id));
+      const scopedAlerts = (a.alerts || []).filter(alert => assigned.includes(alert.patient_id));
 
-  const myAlerts = alerts.filter(a => user?.patients?.includes(a.patient_id));
+      setPatients(scopedPatients);
+      setStats(s);
+      setAlerts(scopedAlerts);
+    } catch (err) { console.error(err); }
+  }, [user]);
+
+  useEffect(() => {
+    if (!user) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchData();
+    const id = setInterval(fetchData, 30_000);
+    return () => clearInterval(id);
+  }, [fetchData, user]);
 
   const QUICK_STATS = [
-    { label: 'My Patients',    value: user?.patients?.length ?? 0, color: '#2563EB', Icon: Users         },
+    { label: 'My Patients',    value: stats?.total_patients ?? 0,    color: '#2563EB', Icon: Users         },
     { label: 'Critical Now',   value: stats?.high_risk      ?? 0,  color: '#DC2626', Icon: AlertTriangle  },
-    { label: 'My Alerts',      value: myAlerts.length,              color: '#7C3AED', Icon: Bell           },
+    { label: 'My Alerts',      value: alerts.length,                color: '#7C3AED', Icon: Bell           },
     { label: 'Total Readings', value: stats?.total_readings ?? 0,   color: '#059669', Icon: BarChart2      },
   ];
 
