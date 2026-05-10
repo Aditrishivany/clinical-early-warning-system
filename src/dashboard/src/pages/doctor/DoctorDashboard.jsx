@@ -39,7 +39,7 @@ const DoctorDashboard = ({ onNavigate, onSelectPatient }) => {
   }, [fetchData, user]);
 
   const QUICK_STATS = [
-    { label: 'My Patients',    value: stats?.total_patients ?? 0,    color: '#2563EB', Icon: Users         },
+    { label: 'My Patients', value: assignedPatientIds.length, color: '#2563EB', Icon: Users },    
     { label: 'Critical Now',   value: stats?.high_risk      ?? 0,  color: '#DC2626', Icon: AlertTriangle  },
     { label: 'My Alerts',      value: alerts.length,                color: '#7C3AED', Icon: Bell           },
     { label: 'Total Readings', value: stats?.total_readings ?? 0,   color: '#059669', Icon: BarChart2      },
